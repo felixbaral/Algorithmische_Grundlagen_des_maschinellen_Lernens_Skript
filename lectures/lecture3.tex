@@ -1,0 +1,39 @@
+
+\section*{lecture 3}
+\subsection*{differentiability and convexiability}
+
+Differentiability: function $t: \mathbb{R}^n \rightarrow \mathbb{R}, x \mapsto t(x)$\\
+$t$ is differentiable at $x \in \mathbb{R}^n$ if $t$ can approximated well in x by a linear function.
+\[\exists t'(x): t(y) = t(x) + \textcolor{red}{t'(x)^T} (y-x) + \textcolor{blue}{o(\lVert y-x\lVert)}\]
+\begin{center}
+\textcolor{red}{$\in \mathbb{R}^n$}\space\space\textcolor{blue}{little o-notation $\stackrel{lim}{r \rightarrow 0} \frac{1}{r} o(r) = 0$} 
+\end{center}
+not always possible:
+%bild1
+\subsection*{the gradient $t'(x)$ in coordinates}
+using the definition of differentiability we can plug in special values for $y$.
+\[y^{(i)}(t) = x + t\textcolor{red}{e_i}\]
+\begin{center}
+ \textcolor{red}{i-th standard basis vector $e_i = (0, \dots, 0,1,0, \dots ,0)^T, o(0)=0$ (the $1$ is position $i$)}
+\end{center}
+by differentiability we have:
+\[t(y^{(i)}(t)) = t(x) + t'(x)^Ty^{(i)}(t) + o(\lVert y^{(i)}(t)-x\lVert)\]
+\[= t(x) + tt'(x)^Te_i+o(t)\]
+\[\Rightarrow t(y^{(i)}(t)) - t(x) - tt'(x)^Te_i = o(t)\]
+\[\Rightarrow \frac{t(y^{(i)}(t))}{} - t'(x)^{T}e_i = \frac{1}{t} o(t)\]
+\[\Rightarrow \textcolor{red}{\stackrel{lim}{t \rightarrow 0} \frac{t(y^{(i)}(t))}{t}} = \textcolor{blue}{t'(x)^Te_i}\]
+\begin{center}
+ \textcolor{red}{$= \frac{\delta t}{\delta x_i}(x)$ partial derivative}\space\space\textcolor{blue}{i-th component of the vector $t'(x)$ (gradient)}
+\end{center}
+\[\Rightarrow t'(x) = (\frac{\delta t}{\delta x_1}, \dots , \frac{\delta t}{\delta < n}(x))\]
+generalization to functions $t: \mathbb{R}^n \rightarrow \mathbb{R}^m$\\
+$t$ is called differentiable in $x \in \mathbb{R}^n$ if $\exists t'(x)\in\mathbb{R}^{m \times n} sit \forall y \in \mathbb{R}: t(y):$
+\[ \underbrace{t(x)+t'(x)(y-x)}_{\substack{\text{linear approx.}}}+\underbrace{(|y-x|)}_{\substack{\text{vector little o-notation}}}\] 
+here  $t'(x)$ is called Jacobi-Matrix\\\\
+
+in coordinates:
+
+\[ t'(x) =\left( \begin{array}{ccc}
+\frac{\delta t_1}{\delta x_1} \dots  \frac{\delta t_1}{\delta x_n}\\
+\vdots \quad \quad \quad \vdots\\
+\frac{\delta t_m}{\delta x_1} \dots  \frac{\delta t_m}{\delta x_n} \end{array} \right)\] 

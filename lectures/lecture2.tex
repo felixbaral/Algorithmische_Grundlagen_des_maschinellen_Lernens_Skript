@@ -1,0 +1,111 @@
+\section*{lecture 2 (06.04.2016)}
+\subsection*{linear regression}
+data: \space \[(x^{(1)}, y^{(1)}), \dots , (x^{n}, y^{n})\]
+\[x^{(i)} \in \mathbb{R}^n \quad\quad covariates\]
+\[y^{(i)} \in \mathbb{R} \quad\quad variates/response \]
+assumption:
+\begin{enumerate}[(1)]
+\item $y = t(x) \quad\quad y$ is function of $x$\\
+linear regression \space\space \framebox{$y = \textcolor{red}{\Theta^T} x$} \space $\Theta \in \mathbb{R}^{n+1}$ (parameter vector)\\
+\textcolor{red}{\quad\quad\quad\quad\quad\quad\quad\quad\quad$\Sigma^n_{i = 0} \Theta_i x_i$}\\
+$x= (1,x_1, \dots ,x_n) \in \mathbb{R}^{n+1} \quad \quad x_0 = 1$
+\item data are obscured by random noise:\\\\
+$y = \Theta^T x +\epsilon, \quad\quad \epsilon = $ random noise term\\
+$p(\epsilon) = \frac{1}{\sqrt{2\pi}} r \exp (- \frac{\epsilon^2}{2 \sigma^2})$\\
+%\includegraphics{plot2.eps}
+since $\epsilon$ is random, also $y$ is random with density $p(y|x, \Theta) - \frac{1}{\sqrt{2\pi}r} \exp (- \frac{\lVert y- \Theta^T x\lVert^2}{2r^2})$\\
+To specify the model we have to estimate $\Theta \in \mathbb{R}^{n+1}$ from the data\\\\
+idea: choose $\Theta$ that maximizes the likelihood\\\\
+likelihood function:
+\[L(\Theta) = \prod^m_{i=1} p(y^{(i)}|x^{(i)};\Theta)\]
+the product form means: the observation $(x^{(1)},y^{(1)}), \dots , (x^{(i)}, y^{(i)})$ are independent of each other\\\\
+estimate:
+\[ \Theta_{ML} = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} L(\Theta) \]
+\[ = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} \prod^m_{i=1} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left(- \frac{(y^{(i)} - \Theta^T x^{(i)})^2}{2 \sigma^2}\right)\]
+since we are only interested in the positoin where the maximum is attained we can apply a monoton transformation to $L(\Theta)$ with changing this position\\\\
+$\Rightarrow \log$-likelihood function: $l(\Theta) = \log L(\Theta)$
+\[ = \Theta_{ML} = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} l(\Theta)\]
+\[ = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} \Sigma^m_{i=1} - \log (\sqrt{2\pi}\sigma) - \frac{1}{2\sigma}(y^{(i)} - \Theta^T x^{(i)})^2\]
+\[\stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} - \textcolor{red}{m \log (\sqrt{2\pi}\sigma)} - \frac{1}{2\textcolor{blue}{\sigma^2}}\Sigma^m_{i=1}(y^{(i)} - \Theta^T x^{(i)})^2  \]
+\begin{center}
+\textcolor{red}{does not depend on $\Theta$}\space\space\space \textcolor{blue}{scaling vector does not influence the optimal $\Theta$}
+\end{center}
+\[ \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} -\frac{1}{2} \Sigma^m_{i=1}(y^{(i)}-\Theta x^{(i)})^2\]
+$X$: data matrix\\
+$\Theta$: parameter vector\\
+$Y$: response vector
+\[\stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} -\frac{1}{2} \lVert X * \Theta - Y \lVert^2_2\]
+\[ \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} \textcolor{red}{\frac{1}{2} \lVert X * \Theta - Y \lVert^2_2}\]
+\begin{center}
+\textcolor{red}{$L(\Theta)$ loss function}\\
+Minimizing the loss function that we discussed already\\
+\end{center}
+\end{enumerate}
+\subsection*{remark} going non-linear $x \in \mathbb{R}, y \in \mathbb{R} \quad y=t(x)$
+\begin{addmargin}[2 cm]{0 cm}
+observations: $(x^{(1)}, y^{(1)}), \dots ,(x^{(i)}, y^{(i)}) \in \mathbb{R} \times \mathbb{R}$ but $f(.)$ not neccessarily linear function\\\\
+$((x^{(1)},x^{(1)^2}, x^{(1)^3}), y^{(1)}), \dots , ((x^{(m)},x^{(m)^2}, x^{(m)^3}), y^{(m)})$\\
+apply linear regression to argumented data points:\\\\
+$\Rightarrow y = \Theta_0 + \Theta_1  x + \Theta_2  x^2 + \Theta_3 x^3$\\\\
+linear regression gives \glqq good estimates\grqq\ for $\Theta_0, \Theta_1, \Theta_2, \Theta_3$\\\\
+overfitting problem!
+%\includegraphics{plot3.eps}
+\end{addmargin} 
+
+\subsection*{logistic regression for binary classification}
+data/observations: $(x^{(1)}, y^{(1)}), \dots , (x^{(i)}, y^{(i)})$\\\\
+\begin{center}
+ $x^{(i)} \in \mathbb{R}^n$ \space covariates\\
+ $y^{(i)} \in {0,1}$ \space variates/response
+\end{center}
+probabilistic model of logistic regression
+\[P[y=1|x;\Theta] = h_{\Theta}(x) \in (0,1)\]
+\[P[y=0|x;\Theta] = 1-h_{\Theta}(x) \]
+
+$h_{\Theta}(x) = g(\Theta^T x)$, where $g(.)$ is the logistic function $g(z) = \frac{1}{1+\exp(-z)}$\\\\
+goal(as in linear regression): estimate $\Theta \in \mathbb{R}^n$ (Parameter vector) from data.\\
+likelihood function for parameter vector $\Theta$:
+\[L(\Theta) = \prod^m_{i=1} P[y^{(i)}|x^{(i)} ; \Theta]\]
+again, assumption of independent observation
+\[= \prod^m_{i=1} \textcolor{red}{h_{\Theta}(x^{(i)})^{y^{(i)}}} \textcolor{blue}{(1-h_{\Theta}(x^{(i)}))^{1-y^{(i)}}}\]
+\begin{center}
+
+$\textcolor{red}{=\begin{cases}1&\text{if $y^{(i)} = 0$}\\h_{\Theta}(x^{(i)})&\text{if $y^{(i)} = 1$}\end{cases}}$
+$\textcolor{blue}{=\begin{cases}1&\text{if $y^{(i)} = 1$}\\1-h_{\Theta}(x^{(i)})&\text{if $y^{(i)} = 0$}\end{cases}}$\\
+$\textcolor{red}{h_{\Theta} := P[y^{(i)} = 1 | x^{(i)};\Theta]}$\space\space
+$\textcolor{blue}{1-h_{\Theta}(x^{(i)}) := P[y^{(i)} = 0 | x^{(i)};\Theta]}$
+\end{center}
+
+instead of working with the likelihood function it is easier to work with the $\log$-likelihood function:
+\[\Theta_{ML} = \stackrel{argmax}{\Theta \in \mathbb{R}^n} L(\Theta) = \stackrel{argmax}{\Theta \in \mathbb{R}^n} \log \underbrace{L(\Theta)}_{\substack{l(\Theta)}}\]
+\[= \stackrel{argmax}{\Theta \in \mathbb{R}^n} \Sigma^m_{i=1} y^{(i)} \log h_{\Theta}(x^{(i)}) + \underbrace{(1-y^{(i)}) \log(1-h_{\Theta}(x^{(i)}))}_{\substack{\log \text{likelihood function}}}\]
+neccessary for optimum is a vanishing gradient\\
+$\bigtriangledown_{\Theta} l(\Theta) \stackrel{!}{=}0$\\
+for computing the gradient:
+\[\frac{d}{dz} g(z) = \frac{d}{dz} \frac{1}{1+\exp(-z)}\]
+\[= \frac{\exp(-z)}{(1+ \exp (-z))^2}\]
+\[= \frac{1}{1+\exp (-z)} (\frac{1+\exp(-z) -1}{1+\exp(-z)})\]
+\[= \frac{1}{1+\exp(-z)} (1-\frac{1}{1+\exp(-z)})\]
+\[= \framebox{g(z)(1-g(z))}\]
+\newline
+\[\bigtriangledown_{\Theta} l(\Theta) = (\frac{\delta}{\delta \Theta_1} l(\Theta), \dots , \frac{\delta}{\delta \Theta_1} l(\Theta))\]
+\[\frac{\delta}{\delta \Theta_j} l(\Theta)= \frac{\delta}{\delta \Theta_j} \Sigma^m_{i=1} y^{(i)}\log h_\Theta(x^{(i)}) + (1-y^{(i)}) \log (1-h_\Theta(x^{(i)}))\]
+\[= \Sigma^m_{i=1} \left( \frac{y^{(i)}}{h_\Theta(x^{(i)})} - \frac{1-y^{(i)}}{1-h_\Theta(x^{(i)})}\right) \frac{\delta}{\delta\Theta_j} \underbrace{h_\Theta(x^{(i)})}_{\substack{g(\Theta^Tx^{(i)})}}\]
+\[=\Sigma^m_{i=1} \left( \frac{y^{(i)}}{h_\Theta(x^{(i)})} - \frac{1-y^{(i)}}{1-h_\Theta(x^{(i)})}\right)\]
+\[h_\Theta(x^{(i)})(1-h_\Theta(x^{(i)}))\underbrace{x^{(i)}_j}_{\substack{\text{j-th component i-th data vetor}}}\]
+\[= \Sigma^m_{i=1} y^{(i)}(1-h_\Theta(x^{(i)}))-(1-y^{(i)})h_\Theta(x^{(i)})x^{(i)}_j\]
+\[= \Sigma^m_{i=1}( y^{(i)}-h_\Theta(x^{(i)}))x^{(i)}_j\]
+Unfortunetaly the system of equations $\frac{\delta}{\delta\Theta_j} l(\Theta)\stackrel{!}{=}0$ is highly non-linear and thus difficult to solve!
+\[= \Sigma^m_{i=1}( y^{(i)}-h_\Theta(x^{(i)}))x^{(i)}_j = 0\]
+turn to a numerical scheme(gradient ascend):\\\\
+initialize: $\Theta^{(0)}$ arbitrary with some vector in $\mathbb{R}^n$\\
+repeat
+\begin{addmargin}[2 cm]{0 cm}
+for $i=1$ to $m$
+\begin{addmargin}[2 cm]{0 cm}
+$\Theta_j^{(k)} = \Theta^{(k-1)}_j + \underbrace{\alpha}_{\substack{learning rate}} \Sigma^m_{i=1}(y^{(i)} - h_{\Theta^{(k)}} x^{(i)})x_j^{(i)}$
+\end{addmargin} 
+end for
+\end{addmargin} 
+until convergence
+%bild
