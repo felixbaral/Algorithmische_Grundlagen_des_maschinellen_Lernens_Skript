@@ -1,0 +1,30 @@
+*.tmp
+Thumbs.db
+SRS.pdf
+
+# Word temporary
+~$*.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Dia temporary
+*.dia~
+*.dia.autosave
+
+# Tex temporary
+*.aux
+*.toc
+*.gz
+*.log
+*.out
+*blx.bib
+*.bbl
+*.blg
+*.run.xml
