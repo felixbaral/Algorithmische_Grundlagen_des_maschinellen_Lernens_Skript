@@ -92,7 +92,7 @@ $\textcolor{red}{(X^T X)_{ij}} = X^{(i)^T}X^{(j)}$\\
 dot product of i-th dataa point and j-th data point\\\\
 hence, the last square solution of the linear regression problem is $\Theta = (X^T X)^{-1} X^T Y$\\\\
 more robust solution:\\\\
-$\Theta = (X^T X + \gamma 11)^{-1} X^T Y, \quad\quad \gamma > 0$ regularization parameter\\\\
+$\Theta = (X^T X + \gamma \mathds{1})^{-1} X^T Y, \quad\quad \gamma > 0$ regularization parameter\\\\
 ridge regression solution is not only more robust numerically, but also statistically (it is not so sensitive to small measurement errors in $X$).\\\\
 Natural question: which loss function gives us the ridge regression solution?\\\\
 answer: $\quad\quad L_{ridge} (\Theta)= \textcolor{red}{\frac{1}{2} \lVert X * \Theta - Y \lVert_2^2} + \textcolor{blue}{\gamma \lVert \Theta \lVert_2^2}$
