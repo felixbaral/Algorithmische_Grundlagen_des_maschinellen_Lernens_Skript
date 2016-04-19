@@ -64,8 +64,8 @@ metric scale: interval- and ratio scale  \\
 data/measurements: $(x^{(1)}, y^{(1)}), \dots , (x^{(n)}, y^{(n)})$ \\\\
 $x^{(i)}$ independent/covariates $\in \mathbb{R}^n$ ($n$ - variables)\\
 $y^{(i)}$ dependent/variates $\in \mathbb{R}^n$\\
-%\includegraphics{plot.eps} \\
-plot suggests a linear dependence between $x$ and $y$ \\
+%\includegraphics{graphs/plot.eps} \\
+graphs/plot suggests a linear dependence between $x$ and $y$ \\
 $y = \Theta_1 x + \Theta_0$\\\\
 in the multivate case: $y = \Theta_0 + \Theta_1 X_1 + \dots + \Theta_n X_n$\\
 $= \Theta^T X, X = (1, X_1, \dots ,X_n ) \in \mathbb{R}^{n+1}$\\\\
@@ -150,7 +150,7 @@ $x= (1,x_1, \dots ,x_n) \in \mathbb{R}^{n+1} \quad \quad x_0 = 1$
 \item data are obscured by random noise:\\\\
 $y = \Theta^T x +\epsilon, \quad\quad \epsilon = $ random noise term\\
 $p(\epsilon) = \frac{1}{\sqrt{2\pi}} r \exp (- \frac{\epsilon^2}{2 \sigma^2})$\\
-%\includegraphics{plot2.eps}
+%\includegraphics{graphs/plot2.eps}
 since $\epsilon$ is random, also $y$ is random with density $p(y|x, \Theta) - \frac{1}{\sqrt{2\pi}r} \exp (- \frac{\lVert y- \Theta^T x\lVert^2}{2r^2})$\\
 To specify the model we have to estimate $\Theta \in \mathbb{R}^{n+1}$ from the data\\\\
 idea: choose $\Theta$ that maximizes the likelihood\\\\
@@ -187,7 +187,7 @@ apply linear regression to argumented data points:\\\\
 $\Rightarrow y = \Theta_0 + \Theta_1  x + \Theta_2  x^2 + \Theta_3 x^3$\\\\
 linear regression gives \glqq good estimates\grqq\ for $\Theta_0, \Theta_1, \Theta_2, \Theta_3$\\\\
 overfitting problem!
-%\includegraphics{plot3.eps}
+%\includegraphics{graphs/plot3.eps}
 \end{addmargin} 
 
 \subsection*{logistic regression for binary classification}
