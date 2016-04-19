@@ -1,5 +1,4 @@
-
-\section*{lecture 3}
+\section*{lecture 3 (11.04.2016)}
 \subsection*{differentiability and convexiability}
 
 Differentiability: function $t: \mathbb{R}^n \rightarrow \mathbb{R}, x \mapsto t(x)$\\
@@ -37,3 +36,50 @@ in coordinates:
 \frac{\delta t_1}{\delta x_1} \dots  \frac{\delta t_1}{\delta x_n}\\
 \vdots \quad \quad \quad \vdots\\
 \frac{\delta t_m}{\delta x_1} \dots  \frac{\delta t_m}{\delta x_n} \end{array} \right)\] 
+
+
+\[\lim_{v \rightarrow 0} \frac{1}{\lVert v \lVert} \quad o(v) = o \in \mathbb{R}^m \]
+\[o(\underbrace{0}_{\substack{\in \mathbb{R}^m}})= 0\]
+special case: assume, that $t: \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable in every $x \in \mathbb{R}^n$. That means $t'(x)$ exists for every $x \in \mathbb{R}^n$! Use this to define a new function:
+\[t': \mathbb{R}^n \rightarrow \mathbb{R}^n , x \mapsto t'(x)\]
+in coordiantes:
+
+\[ t'(x) =\left( \begin{array}{ccc}
+\frac{\delta^2 t}{\delta x_1 \delta_{x_1}}(x) \dots  \frac{\delta^2 t}{\delta x_n \delta_{x_1}}(x)\\
+\vdots \quad \quad \quad \vdots\\
+\frac{\delta^2 t}{\delta x_1 \delta_{x_n}}(x) \dots  \frac{\delta^2 t}{\delta x_n \delta_{x_n}}(x) \end{array} \right)\]
+
+\subsection*{convex functions}
+a subset $K \subset \mathbb{R}^n$ is called convex, if every $p,q \in K$ also $\lambda p + (1-\lambda) q \in K$ for $\lambda \in [0,1]$\\
+
+%pic
+
+a function $t:\mathbb{R}^n \rightarrow \mathbb{R}$ is called convex, if the epi-graph of the function 
+\[epi(t) = \{(x,y) \in \mathbb{R}^{n+1} | y \geq f(x)\}\]
+is a convex set
+
+%pic
+
+alternative characterization of convexity of functions:\\
+$t: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex, if for all $x,y \in \mathbb{R}^n$:
+\[t(\lambda x + (1-\lambda)y) \leq \lambda t(x) + (1-\lambda) + t(x)\]
+
+%pic
+\begin{framed}
+lemma: a differentiable function $t: \mathbb{R} \rightarrow \mathbb{R}$ is convex if and only if $t':\mathbb{R} \rightarrow \mathbb{R}$ ($x \mapsto t'(x)$) is increasing
+\end{framed}
+
+that is, it is enough to look at point $p,q \in \mathbb{R}^{n+1}$ that we on the boundary of the epi-graph of $t$
+
+%proof
+
+\begin{framed}
+corrollary: a twice differentiable function is convex if its second derivative is always non-negative.\\
+follows from: a differential function $t: \mathbb{R} \rightarrow \mathbb{R}$ is increasing if its derivative is non-negative
+\end{framed}
+
+\begin{framed}
+theorem: a twice differential function $t: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex, if and only if the hessian os positive semi-definite.
+
+%proof
+\end{framed}

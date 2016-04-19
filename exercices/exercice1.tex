@@ -1,0 +1,52 @@
+\section*{exercise 1 (08.04.2016)}
+
+\begin{enumerate}[(1)]
+\item
+\[L(\Theta) = \frac{1}{2} \lVert X \Theta - Y \lVert^2_2 + \gamma \lVert \Theta \lVert^2_2 = \frac{1}{2} \Sigma^m_{i=1}(\underbrace{x^{(i)}\Theta}_{\substack{= \Sigma^n_{j=0} x^{(i)}_j \Theta_j}}-y^{(i)})^2 +\Sigma^n_{j=0} \Theta_j^2\]
+\[= \frac{1}{2}\Sigma^m_{i=1}((\Sigma^n_{j=0} x_j^{(i)} \Theta_j)-y^{(i)})^2 +\gamma \Sigma^n_{j=0} \Theta_j^2\]
+\[ \frac{\delta}{\delta\Theta_l}(\dots) = \Sigma^m_{i=1}((\Sigma^n_{j=0} x_j^{(i)} \Theta_j)-y^{(i)})x_l^{(i)} + 2 \gamma \Theta_l\]
+
+\[\bigtriangledown_\Theta L(\Theta) = \underbrace{\frac{1}{2}\bigtriangledown_\Theta \lVert X \Theta-Y \lVert^2_2}_{\substack{= X^TX \Theta - X^TY}} + \underbrace{\gamma \bigtriangledown_\Theta \lVert \Theta \lVert^2_2}_{\substack{= 2 \gamma\Theta}}\]
+
+\[= X^T X \Theta - X^TY + 2 \gamma \Theta \stackrel{!}{=} \Theta\]
+\[\Rightarrow (X^TX + 2\gamma \mathds{1}) \Theta = X^T Y\]
+\[\Rightarrow \Theta_{ridge} = (X^TX +2 \gamma \mathds{1})^{-1} X^TY \]
+\begin{framed}
+\[\lVert X \Theta -Y \lVert^2_2 = (X \Theta -Y)^T (X\Theta -Y)\]
+\[= \Theta^T X^T X \Theta - \underbrace{\Theta^T X^T Y}_{\substack{(X\Theta)^T Y}} - \underbrace{Y^T X \Theta}_{\substack{Y^T (X\Theta) \Rightarrow -2 (X \Theta)^T Y = 2\Theta^T X^T Y = (X \Theta)^T Y}} + Y^T Y\]
+\end{framed}
+\item
+Bayes: \[P(A|B) = \frac{P(AB)}{P(B)}\]
+here: generative $\underbrace{\text{model}}_{\substack{\text{has parameters: $\phi, \Sigma, \mu_0, \mu_1$}}}$ that specifies how $y$ abd $x$ are generated\\\\
+goal: estimate parameters from data $\rightarrow$ user likelihood function to do so
+\[L(\phi,\Sigma,\mu_0, \mu_1) = \prod^m_{i=1} p(x^{(i)}, y^{(i)}; \phi,\Sigma,\mu_0, \mu_1)\]
+\[\prod^m_{i=1} p(y^{(i)}, \phi) p(x^{(i)}; \Sigma, \mu_0)^{1-y^{(i)}} p(x^{(i)}; \Sigma, \mu_1)^{y^{(i)}}\]
+\begin{framed}
+\[p(x) = \frac{1}{\sqrt{2\pi} \sigma} \quad \exp \left( - \frac{(x-\mu)^2}{2 \sigma^2}\right)\]
+density of 1-dim normal distribution $x \in \mathbb{R}$
+\end{framed}
+
+\begin{framed}
+\[ p(x) = \frac{1}{(2\pi)^{\frac{n}{2}}} \underbrace{|\epsilon|^{\frac{n}{2}}}_{\substack{\sqrt{\det (\epsilon)} \quad \text{multi. var. extension of normal dist.}}}  \exp \left( - \frac{(x-\mu)^T \Sigma^{-1} (x-\mu)}{2} \right)\]
+density of multi-variate distribution $x \in \mathbb{R}^n$
+\end{framed}
+
+parameters: $\underbrace{\mu \in \mathbb{R}^n}_{\substack{mem. vector}}, \Sigma \in \mathbb{R}^{n \times n}$\\
+symmetric and positive definite (covariance matrix)\\\\
+a matrix $\Sigma \in \mathbb{R}^{n \times n}$ is symmetric, if $\Sigma_{ij} = \Sigma_{ji} \forall i<j$\\
+example: 
+\[ \left( \begin{array}{ccc}
+1 \quad 3 \\
+3 \quad 2 \end{array} \right)\]
+a symmetric matrix is called positive definite, if $x^T \Sigma x > 0$ for $x \neq 0$\\
+
+example: data matrix $X \in \mathbb{R}^{m \times (n+1)}$
+\[X^T X \in \mathbb{R}^{(n+1) \times (n+1)} (X^T X)_{ij} = x^{(i)^T}x^{(j)}\]
+\[ = x^{(j)^T} x ^{(i)}\]
+\[v^T(X^T X) = (Xv)^T (Xv)= \lVert Xv\lVert^2_2  \underbrace{\geq}_{\substack{\text{equality also allowed}}} 0 \quad\quad \text{positive semi-definite}\]
+\end{enumerate}
+loss function, eg. for logistic regression $L(\Theta)$
+\[\Theta \in \mathbb{R}^{n+1} \rightarrow L(\Theta) \in \mathbb{R}, \text{that is, } L:\mathbb{R}^{n+1} \rightarrow \mathbb{R}\]
+to get optimal $\Theta_i$ neccessary\\
+$\bigtriangledown_\Theta L(\Theta) \stackrel{!}{=} 0$\\
+vector with $(n+1)$ entries, we require that every entry is zero!

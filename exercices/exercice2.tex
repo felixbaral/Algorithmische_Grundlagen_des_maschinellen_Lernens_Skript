@@ -1,0 +1,40 @@
+\section*{exercise 2 (15.04.2016)}
+\begin{enumerate}[(1)]
+ \item likelihood Funktion: $L(\Theta) = \prod^m_{i=1} h_\Theta(x^{(i)}) (1-h_\Theta(x^{(i)}))^{1-y^{(i)}}$\\
+ $h_\Theta(x) = \frac{1}{1+ \exp (- \Theta^T x)}$\\
+ \textcolor{red}{ gesucht: $\Theta^k = \stackrel{argmax}{\Theta \in \mathbb{R}^n} l(\Theta) = \stackrel{argmax}{\Theta \in \mathbb{R}^n} \log L(\Theta) = \stackrel{argmax}{\Theta \in \mathbb{R}^n} \Sigma^m_{i=1} y^{(i)} \log h_\Theta(x^{(i)}) + (1-y^{(i)}) \log (1- h_\Theta(x^{(i)}))$}\\
+ Ziel heute: Zeige, dass $l(\Theta)$ konkave Funktion ist, d.~h.
+ \[l(\alpha \Theta_1 + (1- \alpha) \Theta_2) \geq \alpha l(\Theta_1) + (1-\alpha) l(\Theta_2)\]
+\textcolor{red}{Es reicht zu zeigen, dass die Hesse-Matrix von $l(\Theta)$ negativ semidefinit ist.}
+
+%bild
+%remark
+\begin{framed}
+
+\[g(\epsilon) \frac{1}{1+\exp(-\epsilon)} \in (0,1) \quad\quad \text{logistische Funktion}\]
+\[\frac{d_g(t)}{dt} = \frac{1}{(1+ \exp (-t))}^2 - \exp(-t) = \frac{1}{1+\exp (-t)} \left(1- \frac{1}{1+\exp (t)}\right)\]
+\[g(t)(1-g(t))\]
+\[\Rightarrow \frac{\delta h_\Theta(x)}{\delta \Theta_j} = h_\Theta(x)(1-h_\Theta(x)) \frac{\delta}{\delta \Theta_j} \Theta^T x\]
+\[= h_\Theta(x)(1-H_\Theta(x))x_j\]
+\begin{framed}
+Kettenregel
+\[h_\Theta(x) = g(\Theta^T x)\]
+\[\underbrace{x}_{\substack{\in \mathbb{R}^n}} \underbrace{\mapsto}_{\substack{\text{innere Fkt.}}} \underbrace{\Theta^T}_{\substack{\in \mathbb{R}^n x}} \underbrace{\mapsto}_{\substack{\text{äußere Fkt.}}} \underbrace{g(\Theta^T x)}_{\substack{\in \mathbb{R}^n}}\]
+\[\frac{\delta}{\delta \Theta_j} \Theta^T x = \frac{\delta}{\delta\Theta_j}(\Sigma^m_{i=0} \Theta_i x_i) = \frac{\delta}{\delta\Theta_j}(\Theta_1 x_1 + \Theta_1 x_1 + \dots + \Theta_n  x_n) = x_j\]
+\end{framed}
+\end{framed}
+
+
+Wir wissen schon: 
+\[ \frac{\delta l(\Theta)}{\delta \Theta_j} = \Sigma^m_{i=1}(\underbrace{y^{(i)}}_{\substack{\in \{0,1\}}} - \underbrace{\Theta(x^{(i)}))}_{\substack{\in (0,1)}} x^{(i)}_j\]
+\[ \frac{\delta^2 l(\Theta)}{\delta \Theta_k \delta \Theta_j} = \frac{\delta}{\delta \Theta_k }\Sigma^m_{i=1} (y^{(i)} - h_\Theta(x^{(i)})) x_j^{(i)}\]
+\[ =\underbrace{\frac{\delta}{\delta \Theta_k} (\Sigma_{i=1}^m y^{(i)} x_j^{(i)})}_{\substack{= 0, \text{hängt nicht von $\Theta$ ab}}} - \frac{\delta}{\delta \Theta_k} (\Sigma^m_{i=1} h_\Theta(x^{(i)}) x_j^{(i)})\]
+\[ = \frac{\delta}{\delta \Theta_k} \Sigma^m_{i=1} h_\Theta (x^{(i)}) x_j^{(i)}\]
+\[ = - \Sigma^m_{i=1} \frac{\delta}{\delta \Theta_k} (h_\Theta(x^{(i)}) x_j^{(i)})\]
+\[ = - \Sigma^m_{i=1} x_j^{(i)} \frac{\delta}{\delta\Theta_k} h_\Theta(x^{(i)})\]
+\[ = - \Sigma^m_{i=1} \underbrace{h_\Theta(x^{(i)})}_{\substack{> 0}} \underbrace{(1- h_\Theta(x^{(i)}))}_{\substack{> 0}} x_j^{(i)} x_k^{(i)}\]
+Wir müssen zeigen, dass $v^T \quad H(\Theta)v \geq 0$ für alle $v \in \mathbb{R}^n$
+\[ \underbrace{H(\Theta)}_{\substack{\in \mathbb{R}^{n \times n}}} = (H_{kj}(\Theta)) = \left( \frac{\delta^2 l(\Theta)}{\delta\Theta_k \delta\Theta_j}\right)\]
+\[\]
+
+\end{enumerate}

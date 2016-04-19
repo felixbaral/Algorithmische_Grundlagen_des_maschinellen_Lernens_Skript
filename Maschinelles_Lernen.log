@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.16)  18 APR 2016 19:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.16)  19 APR 2016 19:56
 entering extended mode
 **Maschinelles_Lernen.tex
 (Maschinelles_Lernen.tex
@@ -268,6 +268,14 @@ Package: scrtime 2015/10/03 v3.19a KOMA-Script package (time of LaTeX run)
 (D:\Programme\MiKTeX\tex\latex\dstroke\dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
+(D:\Programme\MiKTeX\tex\latex\framed\framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip51
+\fb@frw=\dimen115
+\fb@frh=\dimen116
+\FrameRule=\dimen117
+\FrameSep=\dimen118
+)
 (D:\Programme\MiKTeX\tex\latex\hyperref\hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -325,7 +333,7 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (D:\Programme\MiKTeX\tex\latex\oberdiek\kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen115
+\@linkdim=\dimen119
 \Hy@linkcounter=\count103
 \Hy@pagecounter=\count104
 
@@ -352,10 +360,10 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen116
+\XeTeXLinkMargin=\dimen120
 \Fld@menulength=\count107
-\Field@Width=\dimen117
-\Fld@charsize=\dimen118
+\Field@Width=\dimen121
+\Fld@charsize=\dimen122
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -382,42 +390,42 @@ Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip51
+\Hy@SectionHShift=\skip52
 )
 (Maschinelles_Lernen.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
  (D:\Programme\MiKTeX\tex\latex\ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 (D:\Programme\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count113
-\scratchdimen=\dimen119
+\scratchdimen=\dimen123
 \scratchbox=\box29
 \nofMPsegments=\count114
 \nofMParguments=\count115
 \everyMPshowfont=\toks27
 \MPscratchCnt=\count116
-\MPscratchDim=\dimen120
+\MPscratchDim=\dimen124
 \MPnumerator=\count117
 \makeMPintoPDFobject=\count118
 \everyMPtoPDFconversion=\toks28
 )
 \AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring ON on input line 16.
+Package hyperref Info: Link coloring ON on input line 17.
  (D:\Programme\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -426,9 +434,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count119
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (Maschinelles_Lernen.out) (Maschinelles_Lernen.out)
 \@outlinefile=\write3
@@ -675,8 +683,72 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--103
 
  []
 
+) (exercices/exercice1.tex
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 5.
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 19--22
+
+ []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 29.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 29.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 29.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 29.
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 34--38
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--42
+
+ []
+
 ) (lectures/lecture3.tex
 Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 14.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 14.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 14.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 14.
+ [9]
+Underfull \hbox (badness 10000) in paragraph at lines 30--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--32
+
+ []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 50.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 50.
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+
+ []
+
+) (exercices/exercice2.tex
+Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 7.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 7.
@@ -684,18 +756,9 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 7.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 7.
- [7]
-Underfull \hbox (badness 10000) in paragraph at lines 31--33
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--33
-
- []
-
+ [11] (D:\Programme\MiKTeX\tex\latex\ucs\uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 35.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 35.
 Package babel Info: Redefining ngerman shorthand "~
@@ -704,23 +767,34 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 35.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 35.
- [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 35.
+
+[12])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 39.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 39.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 39.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 39.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 39.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 39.
  (Maschinelles_Lernen.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 35.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 35.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 39.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 39.
 Package rerunfilecheck Info: File `Maschinelles_Lernen.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 35.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 39.
  ) 
 Here is how much of TeX's memory you used:
- 8341 strings out of 493673
- 125714 string characters out of 3147222
- 289322 words of memory out of 3000000
- 11524 multiletter control sequences out of 15000+200000
+ 8914 strings out of 493673
+ 131933 string characters out of 3147222
+ 291747 words of memory out of 3000000
+ 12072 multiletter control sequences out of 15000+200000
  19121 words of font info for 62 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 43i,14n,50p,347b,458s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,14n,50p,429b,740s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\hanNES\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \ecrm0800.pk> <C:\Users\hanNES\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
 n\ec\dpi600\ecbx1200.pk> <C:\Users\hanNES\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
@@ -734,12 +808,13 @@ fonts/cm/cmmi6.pfb><D:/Programme/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pf
 b><D:/Programme/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Programme/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/Programme/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmr8.pfb><D:/Programme/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><D:/Programme/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/P
-rogramme/MiKTeX/fonts/type1/public/dstroke/dsrom12.pfb><D:/Programme/MiKTeX/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Maschinelles_Lernen.pdf (8 pages, 183480 bytes).
+/cmsy10.pfb><D:/Programme/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/P
+rogramme/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Programme/MiKTeX/f
+onts/type1/public/dstroke/dsrom12.pfb><D:/Programme/MiKTeX/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb>
+Output written on Maschinelles_Lernen.pdf (13 pages, 223343 bytes).
 PDF statistics:
- 285 PDF objects out of 1000 (max. 8388607)
- 27 named destinations out of 1000 (max. 500000)
+ 342 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
