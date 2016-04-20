@@ -6,12 +6,22 @@
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{scrtime}
 \usepackage{dsfont}
 \usepackage{framed}
 \usepackage[colorlinks=true,urlcolor=blue,linkcolor=black]{hyperref}
+\usepackage{perpage} %the perpage package, used for footnotes
+\usepackage{pifont} %used for customized footnotes
+
+
+
+% symbol sequence: * \dagger \ddagger \S \P ...
+\MakePerPage{footnote} %the perpage package command
+%\renewcommand\thefootnote{\fnsymbol{footnote}}
+\renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
 
 
 \begin{document}
@@ -34,6 +44,7 @@
 \input{exercices/exercice1}
 \input{lectures/lecture3}
 %\input{lectures/lecture4}
+\input{lectures/lecture6}
 \input{exercices/exercice2}
 
 \end{document}

@@ -1,0 +1,141 @@
+\section*{lecture 6 (20.04.2016)}
+	\subsection*{Gauss'sche Diskriminanzanalyse}
+		\subsubsection*{Bisher:}
+			Maximum Likelihood-Schätzung der Oarameter $\phi, \mu _0 \mu _1$
+			
+			\textcolor{red}{Eigentlich $\Sigma$ schätzen, das ist etwas aufwändiger}
+			\textcolor{red}{\[ \Sigma _{ML} = \sum_{i=1}^{m} \chi_{\{y^{(i)} = 1\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T + \sum_{i=1}^{m} \chi_{\{y^{(i)} = 0\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T \quad   \footnote{$(x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T$ ist Rang 1 Matrix}\]}
+			
+		\subsubsection*{Wichtig:}
+			$\Sigma$ ist gleich für die beiden Klassen $y = 1$ bzw. $y = 0$.
+			
+		\subsubsection*{Jetzt:}
+			Bestimmung der Entscheidungsgrenze
+			\[x: P[y = 1 | x] = P[y = 0 | x]  \textcolor{red}{= \frac{1}{2}} \quad \footnote{$ x \in \mathbb{R} $}\]
+		\subsubsection*{Hinweis:}
+			Zeige, dass
+			\begin{gather*}
+				P[y = 1 | x]  = \frac{1}{1 + \exp(- \Theta ^T x)} \\
+				\Rightarrow P[y = 0 | x]  = 1 - \frac{1}{1 + \exp(- \Theta ^T x)}
+			\end{gather*}
+%			\hskip
+			
+			\noindent \textcolor{red}{Sieht aus wie die logistische Regression ist aber anders: 				
+				\begin{enumerate}
+					\item Generatives vs. Diskriminierendes Modell
+					\item $ \Theta $ bei logistischer Regression ist allgemeiner
+				\end{enumerate}
+			}
+			
+		\subsubsection*{Aufgabe:}
+			Umformen von
+			%TODO footnote wird nicht angezeigt -> keine Fußnoten innerhalb Umgebung 
+			\begin{gather*}
+				P[y = 1 | x]  = \frac{p(y = 1,x )}{p(x)} \\
+%				
+				= \frac{p(x|y=1)P[y=1]}{p(x|y=)P[y=0] + p(x|y=1)P[y=1]} \quad \footnote{$ P[y=1] = \phi $} \footnote{$ P[y=0] = 1- \phi $} \\
+%				
+				= \frac{\phi \exp(-\frac{1}{2}(x-\mu_1)^T \Sigma^{-1} (x-\mu_1))}{(1 - \phi ) \exp(-\frac{1}{2}(x-\mu_0)^T \Sigma^{-1} (x-\mu_0)) + \phi \exp(-\frac{1}{2}(x-\mu_1)^T \Sigma^{-1} (x-\mu_1))} \\
+%
+				= \frac{1}{(\frac{1 - \phi }{\phi}) \exp(-\frac{1}{2}(x-\mu_0)^{T}  \Sigma^{-1} (x-\mu_0) + \frac{1}{2}(x-\mu_1)^T \Sigma^{-1} (x-\mu_1)) + 1} \quad \footnote{$ \frac{1}{exp(-a)} = \exp(a)  $ \\
+					$ \frac{\exp(a)}{\exp(b)} = \exp(a - b) $} \footnote{NR: $ (x-\mu_0)^T \Sigma^{-1} (x-\mu_0) = x^T \Sigma^{-1} x - 2\mu_0^T \Sigma^{-1} x  + \mu_0^T \Sigma^{-1} \mu_0 $}\\
+%					
+				= \frac{1}{(\frac{1 - \phi }{\phi}) \exp(-2(\mu_0 - \mu_1)^{T}  \Sigma^{-1} x - \mu_0^T \Sigma^{-1} \mu_0 + \mu_1^T \Sigma^{-1} \mu_1) + 1} \\
+%				 
+				= \frac{1}{\exp(-2(\mu_0 - \mu_1)^{T}  \Sigma^{-1} x - \mu_0^T \Sigma^{-1} \mu_0 + \mu_1^T \Sigma^{-1} \mu_1 + log(1- \phi) - log(\phi) + 1} \\
+%				
+				= \frac{1}{\exp(- \Theta^Tx)+1}
+			\end{gather*}
+			
+			%TODO footnote wird nicht angezeigt -> keine Fußnoten innerhalb Umgebung
+			\begin{gather*}
+				x = (1,x_1,\dots,x_n) \in \mathbb{R}^{n+1}\\
+%				
+				\Theta_0 = \mu_0^T \Sigma^{-1} \mu_0 - \mu_1^T \Sigma^{-1} \mu_1 - log(1- \phi) + log(\phi) \\
+%				
+				\Theta_i = (2(\mu_0 - \mu_1)^T \Sigma^{-1})_i \quad \footnote{Vektor in $ \mathbb{R}^n $, i-te Koordinate des Vektors}
+			\end{gather*}
+			
+			\begin{gather*}
+				P[y = 0 | x] = 1 - P[y = 1 | x]  = 1 - \frac{1}{1 + \exp(- \Theta^Tx)} \\
+				= \frac{\exp(- \Theta^Tx)}{1 +\exp(- \Theta^Tx)} \\
+				= \frac{1}{\exp( \Theta^Tx) + 1} \\
+				= \frac{1}{1+ \exp(\Theta^Tx)}
+			\end{gather*}
+		
+		\subsubsection*{Bestimmung der Entscheidungsgrenze:}
+			
+			%TODO footnote wird nicht angezeigt -> keine Fußnoten innerhalb Umgebung
+			\begin{gather*}
+				x : P[y = 1 | x] = P[y = 0 | x] \\
+				\Leftrightarrow x : \frac{1}{1+ \exp(- \Theta^Tx)} = 1 - \frac{1}{1+ \exp(- \Theta^Tx)} \\
+				\Leftrightarrow x : \frac{2}{1+ \exp(- \Theta^Tx)} = 1 \\
+				\Leftrightarrow x : 2 = 1 + exp(- \Theta^Tx) \\
+				\Leftrightarrow x : 1 = exp(- \Theta^Tx) \\
+				\Leftrightarrow x : 0 = - \Theta^Tx \quad \footnote{Ziehen des Logarithmus} \\
+				\Leftrightarrow x : 0 = \Theta^Tx 				
+			\end{gather*}
+			
+		\subsubsection*{Entscheidungsgrenze:}
+		
+			\[ \{x \in \mathbb{R}^n | \Theta^Tx + \Theta_0 = 0 \} \]
+		
+			\noindent Wie sieht die Entscheidungsgrenze Geometrisch aus? \\
+			Fall $ \Theta_0 = 0: x: \Theta^Tx = 0$ \quad \footnote{D.h. x muss senkrecht zum Vektor $ \Theta $ sein $ \Rightarrow $ Entscheidungsgrenze ist ein $ n-1 $- Dimensionaler Unterraum des $ \mathbb{R}^n $}
+			
+			%TODO Plot muss erstellt werden
+%			\begin{figure}
+%				\centering
+%				\includegraphics[width=0.7\linewidth]{graphs/plot6_1}
+%				\caption{Entscheidungsgrenze wird durch einen Eindimensionalen Unterraum othogonal zu $ \Theta $}
+%			\end{figure}
+			
+			\noindent Fall $ \Theta_0 \neq 0 \Rightarrow$ Verschiebung des $ (n-1) $- Dimensionalen Unterraums
+			
+			%TODO Plot muss erstellt werden
+%			\begin{figure}
+%				\centering
+%				\includegraphics[width=0.7\linewidth]{graphs/plot6_2}
+%				\caption{a : Abstand des Unterraums zum Ursprung}
+%			\end{figure}
+			
+			\subsubsection*{Einschub vektorisierte Schreibweise}
+			\noindent log-Likelihood Funktion für ligistische Regression:
+			
+			\[ l(\Theta) = \sum_{i = 1}^{m} y^{(i)} \log h_\Theta (x^{(i)}) + (1 - y^{(i)}) \log(1 - h_\Theta x^{(i)})\]
+			\[ h_\Theta (x^{(i)})  = \frac{1}{1 + \exp(- \Theta^T x^{(i)})}\]
+			
+			\noindent Vektorisieren:
+			
+			\[Datenmatrix \quad	X = 
+				\begin{matrix} \begin{pmatrix} x^{(1)^T} \\ \vdots \\ x^{(m)^T}	\end{pmatrix}  \end{matrix}
+				\begin{matrix} \begin{pmatrix} x_1^{(1)} & \dots & x_n^{(1)} \\ \vdots & \ddots & \vdots \\ x_1^{(m)}	& \dots & x_n^{(m)}\end{pmatrix}  \end{matrix} \]
+				
+			\[ vec(a) * (y*.log.(vec(1)/. (vec(1) +. exp.(-x \cdot \Theta))))  \textcolor{red}{ = \sum_{i = 1}^{m} y^{(i)}\log(h_\Theta(x^{(i)}))}\]
+			
+			\subsection*{3. Einführungsbeispiel \small{(1. Lineare Regression, 2. Logistische Regression)}}
+			
+			Das Naive Bayes Verfahren (Hier als Beispiel für eine Kontingenzanalyse)
+			
+			\subsubsection*{Daten:}
+				\[ (x^{(1)}, y^{(1)}), \dots, (x^{(m)}, y^{(m)}) \]
+				\begin{gather*}
+					y^{(i)} \in \{0,1\} \quad Variates
+					x^{(i)} \in \{0,1\}^n \quad Covarates 
+				\end{gather*}
+				
+				
+			\subsubsection*{Modell:}
+				%TODO Fußnote wird nicht angezeigt
+				\begin{gather*}
+					P[y =1] = \Theta_y, P[y =0] = 1 - \Theta_y \\
+					P[x|y] = P[x_1,\dots,x_n|y] =\footnote{Naive Bayes Annahme} = \prod_{i = 1}^{n} P[x_i|y] \\
+					= \prod_{i = i}^{n} [ \Theta_{x_i,y=1} ^{x_i} (1- \Theta_{x_i, y = 1})^{1-x_i}]^y [ \Theta_{x_i,y=0} ^{x_i} (1- \Theta_{x_i, y = 0})^{1-x_i}]^{1-y}
+				\end{gather*}
+			
+			\subsubsection*{\textcolor{red}{Modellparameter}}
+				
+				\textcolor{red}{\[ \Theta_y, \Theta_{x_i,y = 1} (i=1,\dots,n), \Theta_{x_i,y = 0} (i=1,\dots,n)  \Rightarrow 2n + 1 \medspace Parameter\]}
+			
+			\noindent [Im ganz allgemeinen Modell haben wir $ 2^{n+1}-1 $ Parameter]
+			
