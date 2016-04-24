@@ -16,12 +16,12 @@
 \usepackage{perpage} %the perpage package, used for footnotes
 \usepackage{pifont} %used for customized footnotes
 
-
-
 % symbol sequence: * \dagger \ddagger \S \P ...
 \MakePerPage{footnote} %the perpage package command
 %\renewcommand\thefootnote{\fnsymbol{footnote}}
 \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+
+\setlength\parindent{0pt} %komischen einzug verhindern
 
 
 \begin{document}
