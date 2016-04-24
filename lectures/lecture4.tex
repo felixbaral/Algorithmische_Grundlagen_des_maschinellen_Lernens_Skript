@@ -1,0 +1,42 @@
+\section*{lecture 4 (13.04.2016)}
+\subsection*{characterization of convexity}
+In terms of positivity of the hessian\\
+$\rightarrow$ hessian is positive semi-definite everywhere\\\\
+%bild
+%bildcaption: lines of equal function values \glqq iso-lines \grqq
+Linear regression is a convex optimization problem. Loss function of linear regression:
+\[ L(\Theta) = \frac{1}{2} \lVert X \Theta Y \lVert^2_2\]
+gradient of loss function:
+\[\bigtriangledown_\Theta L(\Theta) = X^T X \Theta- X^T Y\]
+To compute the hessian we need the derivative (jacobian) of
+\[\underbrace{\Theta}_{\substack{\in \mathbb{R}^{n+1}}} \mapsto \bigtriangledown_\Theta L(\Theta) = X^T X \Theta- \underbrace{X^T Y}_{\substack{\text{does not depend on $\Theta$}}}, \quad\quad \in \mathbb{R}^{n+1}\]
+$\rightarrow$ hessian of loss function:
+\[\in \mathbb{R}^{(n+1)(n+1)}\]
+\[X^T X = H_\Theta L(\Theta)\]
+need to show $X^T X$ is positive semi-definite matrix $A \in \mathbb{R}^{(n+1)(n+1)}$ is called positive semi-definite if:
+\begin{enumerate}[1.]
+\item it is symmetric ($a_{ij} = a_{ji}$ for all indices)
+\item $v^T Av \geq$ for all $v \in \mathbb{R}^{n+1}$
+\end{enumerate}
+
+$X^T X$:
+\begin{enumerate}[1.]
+\item symmetric, because $(X^T X)_{ij} = X^{(i)^T}X^{(j)}=X^{(j)^T}X^{(i)} = (X^T X)_{ij}$
+\item positivity: $v^T X^T Xv: (Xv)^T(Xv) = \lVert Xv \lVert^2_2 \geq 0$
+\end{enumerate}
+
+\subsection*{remark}
+\textbf{ridge regression}:
+\[\bigtriangledown_\Theta k_{ridge}(\Theta) = X^T X \Theta - X^T Y + \gamma \mathds{1} \Theta, \quad\quad \underbrace{\gamma > 0}_{\substack{\text{regularization parameter}}}\]
+\[\Rightarrow H_\Theta(l_{ridge}(\Theta)) = \underbrace{X^T X + \gamma \mathds{1}}\]
+if $\gamma$ is large enough, the $X^T X +\gamma \mathds{1}$ is positive definite\\\\
+$A \in \mathbb{R}^{(n+1)\times(n+1)}$ is called positive definite if,
+\begin{enumerate}[1.]
+\item $A$ is positive semi-definite
+\item $v^T Av > 0$ for all $v \in \mathbb{R}^{n+1} \textbackslash \{0\} \quad\quad i.e. v \neq 0$\\
+consequence of positive-definite hessian:
+
+%2 bilder
+%bild1caption: not strongly convex, minimum is not unique
+%bild2caption: strongly convex
+\end{enumerate}
