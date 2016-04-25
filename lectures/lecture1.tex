@@ -95,8 +95,8 @@
 	privided that $(X^T X)^{-1}$ exists\\\\
 	$\textcolor{red}{(X^T X)_{ij}} = X^{(i)^T}X^{(j)}$\\
 	\textcolor{red}{operation matrix}\\
-	dot product of i-th dataa point and j-th data point\\\\
-	hence, the last square solution of the linear regression problem is $\Theta = (X^T X)^{-1} X^T Y$\\\\
+	dot product of i-th data point and j-th data point\\\\
+	hence, the least square solution of the linear regression problem is $\Theta = (X^T X)^{-1} X^T Y$\\\\
 	more robust solution:\\\\
 	$\Theta = (X^T X + \gamma \mathds{1})^{-1} X^T Y, \quad\quad \gamma > 0$ regularization parameter\\\\
 	ridge regression solution is not only more robust numerically, but also statistically (it is not so sensitive to small measurement errors in $X$).\\\\
@@ -112,5 +112,5 @@
 	\end{center}
 	model of the noise: gaussian noise \space\space $p(\epsilon)= \frac{1}{\sqrt{2\pi}\sigma} \exp (- \frac{\epsilon^2}{2 \sigma^2}) \quad$ (probability density function)\\
 	$P[a \leq \epsilon \leq b] = \int_a^b p(\epsilon)\quad d\epsilon$\\\\
-	$Y$ is a function of the random noise term $\epsilon$ als a random variable. The probability density function of $Y$ is:
+	$Y$ is a function of the random noise term $\epsilon$ as a random variable. The probability density function of $Y$ is:
 	\[ p(Y) = \frac{1}{\sqrt{2 \pi}\sigma} \exp(- \frac{\lVert Y - \Theta^T X \lVert^2_2}{2 \sigma^2})\]
