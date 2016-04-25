@@ -4,7 +4,7 @@
 \subsection{Naive Bayes (Bsp. Kontingenzanalyse)}
 	\subsubsection*{Parameter}
 		\[ P[y=1] = \phi_y \quad, y \in \{0,1\} Variates\]
-		\[ P[x_i|y=1] = \phi_{x_i, y = 1} \quad, x \in \{0,1\}^n Covariates  \rightarrow x_i \in \{0,1\}\]
+		\[ P[x_i|y=1] = \phi_{x_i, y = 1} \quad, x \in \{0,1\}^n Covariates  \Rightarrow x_i \in \{0,1\}\]
 		\[ P[x_i|y=0] = \phi_{x_i, y = 0}\]
 		\[2n + 1 Parameter \]
 	
@@ -61,10 +61,73 @@
 		
 		\[ \phi_y \prod_{i = 1}^{n} \xj{1}^{x_i} (1 - \xj{1})^{(1 - x_j)}\]
 		\[ = \exp(log(\phi_y) + \sum_{i = 1}^{n} x_i log(\xj{1}) + \sum_{i = 1}^{n} (1-x_i) log(1 - \xj{1})) \]
-		\[ = \exp(\underbrace{\sum_{i = 1}^{n} \log(\frac{\xj{1}}{1- \xj{1}})}_{\substack{= X^T\Theta_i \quad, \Theta = (\Theta1,\dots,\Theta_n), \Theta_i = log(\frac{\xj{1}}{1-\xj{1}})}} + \underbrace{\log(\phi_y) + \sum_{i=1}^{n} \log(1 -\xj{1})}_{\substack{=_\Theta_0}})\]
+
+		\[ = \exp(\underbrace{\sum_{i = 1}^{n} \log(\frac{\xj{1}}{1- \xj{1}})}_{\substack{= X^T\Theta_i \quad, \Theta = (\Theta1,\dots,\Theta_n), \Theta_i = log(\frac{\xj{1}}{1-\xj{1}})}} + \underbrace{\log(\phi_y) + \sum_{i=1}^{n} \log(1 -\xj{1})}_{\substack{=\Theta_0}})\]
 		
-		\[ \rightarrow P[y = 1| x] = \frac{1}{1 + \exp(- \Theta^~ x)} \]
-		\[ \rightarrow P[y = 0| x] = 1- \frac{1}{1 + \exp(- \Theta^~ x)} \]
-		\[ \rightarrow Linearer Klassifikator (wie bei gauss'scher Diskriminanzanalyse) \]
+		\[ \Rightarrow P[y = 1| x] = \frac{1}{1 + \exp(- \tilde{\Theta} x)} \]
+		\[ \Rightarrow P[y = 0| x] = 1- \frac{1}{1 + \exp(- \tilde{\Theta} x)} \]
+		$ \Rightarrow $ Linearer Klassifikator (wie bei gauss'scher Diskriminanzanalyse) 
+		
+	\subsection*{Disrekte Auswahlprobleme (Viertes Einführungsbeispiel: Skalierung)}
+		Daten: $ (((a^{(1)}, b^{(1)}), y^{m}),\dots, ((a^{(1)}, b^{(m)}),y^{(m)})) $
+		
+		\[ y^{(i)} \in \{0,1\} \quad, Variates\]
+		\[ a^{(i)}, b^{(i)} \in A,\quad \text{wobei} \text{A eine endliche Menge von Optionen ist}\]
+		
+		\[ \text{Es gilt } y^{(i)} =
+		\begin{cases}1 & a^{(i)} \succeq b^{(i)}\\0 & a^{(i)} \prec b^{(i)}
+		\end{cases} \quad \textcolor{red}{\succ \text{Präferenzoperator}}\]
+		
+
+		
+	\subsubsection*{Annahme}
+		Es gibt Nutzenfunktionen $ u : A \rightarrow \mathbb{R} $
+		\[ a \succeq b \text{genau dann, wenn } u(a) \geq u(b) \]
+	\subsubsection*{Ziel}
+		Schätze die Nutzenfunktion aus den Daten
+	\subsubsection*{Ansatz}
+		\[ u(a) = \underbrace{v(a)}_{\textcolor{red}{\text{deterministischer Anteil, \underline{soll geschätzt werden}}}} + \underbrace{\epsilon(a)}_{\textcolor{blue}{\text{probabilistisches Rauschen, \underline{wird modelliert}}}}\]
+		
+	\subsubsection*{Kurzschreibweise}
+		\[ u(a) = u_a, v(a) = v_a, \epsilon(a)= \epsilon_a\]
+		\[ P_{ab} = P[u_a \geq u_b] = P[v_a + \epsilon_a \geq v_b + \epsilon_b] =P[v_a - v_b \geq \underbrace{\textcolor{red}{\epsilon_b -\epsilon_a}]}_{\text{Zufallsvariable}}\]
+				
+	\subsubsection*{Modellierung von $ \epsilon_a $:}
+	\subsubsection*{1. Thurstone Modell(Probit Methode)}
+	
+		$ \epsilon_a $ ist Gauss'sches / Normalverteiltes Rauschen
+		\[ \Rightarrow \text{Dichte} p(\epsilon_a)= \frac{1}{2 \pi \sigma} \exp(\frac{1}{2}\frac{\epsilon_a^2}{2 \sigma^2}), \textcolor{red}{\text{ Varianz: } \sigma^2, \text{ Erwartungswerg: } 0}\]
+		\[ \Rightarrow \text{Differenz } \epsilon_b - \epsilon_a \text{ ist wieder normalverteilt, wobei sich Erwartungswerte und Varanzen addieren} \]
+	
+		
+	\subsubsection*{Es folgt:}
+		\[ P_{ab}  = P[v_a -v_b \geq \epsilon_b - \epsilon_a] =  \frac{1}{2 \sqrt{\pi} \sigma} \int_{-\infty}^{v_a - v-b} \exp(-\frac{x^2}{4 \sigma^2}) dx\]
+		\[ =: \Phi (\frac{v_a - v_b}{\sqrt{2} \sigma}) \quad \textcolor{red}{\text{Definition! } \Phi \text{-Funktion ist tabelliert}}\]
+		\[ \Rightarrow v_a -v_b = \sqrt{2} \sigma \Phi^{-1} (p_{ab})\]
+		
+		\textcolor{red}{$ p_ab $ ist nicht bekannt, aber wir können $ p_{ab} $ schätzen durch $ t_{ab} $ }
+		\[ \textcolor{red}{t_{ab} \frac{\text{\# Vergleiche von $ a $ und b, die $ a $ gewinnt}}{\text{\# Vergleiche von $ a $ und $ b $}}} \]
+		
+	\subsubsection*{Definiere:}
+		\[ v_{ab} = \sqrt{2} \sigma \Phi^{-1} (t_{ab}) \text{\textcolor{blue}{Bemerkung: Wir können OBDA $ \sigma = 1 $ setzen}}\]
+		
+		D.h. wir haben einen Schätzwert $ v_{ab} $, aber eigentlich brauchen wir Schätzwerte für $ v_a $!
+		\textcolor{blue}{Aufgabe: Ausrechnen der $ v_a $ aus den$  v_{ab} $ (später!)}
+		
+	\subsubsection*{2. Bradley Terry Modell (Logit Modell)}
+		$ \epsilon_a $ ist Extremwert / Grumbel verteilt
+		$ \Rightarrow \epsilon_b - \epsilon_a $ ist logistisch verteilt
+	\subsubsection*{Es folgt:}
+		\[ P_ab = P[v_a - v_b \geq \epsilon_b - \epsilon_a] = \frac{1}{1+ \exp(-(v_a + v_b))}\]
+		\[ = \frac{\exp(v_a + v_b)}{\exp(v_a - v_b) +1} = \frac{\exp(v_a)}{\exp(v_a) + \exp(v_b)}  \]
+		\[ \Rightarrow \frac{P_{ab}}{1- P_{ab}} = \frac{P_{ab}}{P_{ba} \frac{\frac{\exp(v_a)}{\exp(v_a) + \exp(v_b)}}{\frac{\exp(v_b)}{\exp(v_a) + \exp(v_b)}} \]
+		\[ \frac{\exp(v_a)}{\exp(v_b)} = \exp(v_a - v_b) \]
+		\[ \Rightarrow v_a - v_b = \log(\frac{P_{ab}}{1- P_{ab}}) \textcolor{red}{\text{$ P_{ab} $ ist nicht bekannt, dafür aber der Schätzwert $ t_{ab} $}}\]
+		\[ v_{ab} = \log(\frac{t_{ab}}{1 - t_{ab}}) \]
+		
+		Wie im Probit Fall haben wir einen Schätzwert für die $ v_{ab} $ aus denen wir Schätzwerte für die $ v_a $ berechnen müssen
 		
 	\subsubsection*{}
+	
+	
+	
