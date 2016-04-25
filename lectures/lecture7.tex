@@ -1,0 +1,70 @@
+\newcommand{\xj}[1]{\phi_{x_j, y=#1}}
+
+\section*{lecture 7 (25.04.2016}
+\subsection{Naive Bayes (Bsp. Kontingenzanalyse)}
+	\subsubsection*{Parameter}
+		\[ P[y=1] = \phi_y \quad, y \in \{0,1\} Variates\]
+		\[ P[x_i|y=1] = \phi_{x_i, y = 1} \quad, x \in \{0,1\}^n Covariates  \rightarrow x_i \in \{0,1\}\]
+		\[ P[x_i|y=0] = \phi_{x_i, y = 0}\]
+		\[2n + 1 Parameter \]
+	
+	\subsubsection*{Maximum-Likelihood-Schätung}
+	
+		Daten: $ ((x^{(1)},y^{(1)}),\dots,(x^{(m)},y^{(m)}) ) $
+		
+		\[ \phi_0 = \frac{1}{m} \textcolor{blue}{\sum_{i = 1}^{m} y^{(i)}}\]
+		
+		\[ \xj{1} = \frac{\sum_{i=1}^{m} x_j ^{(i)} y^{(i)}}{\textcolor{blue}{\sum_{i=1}^{m}y^{(i)}}} \]
+			
+			\textcolor{blue}{Zählen wie oft y = 1 beobachtet wurde}
+			
+		\[ \xj{0} =  \frac{\sum_{i=1}^{m} x_j ^{(i)} (1- y^{(i)})}{\textcolor{cyan}{\sum_{i=1}^{m}(1- y^{(i)})}} \]
+		
+			\textcolor{cyan}{Zählen wie oft y = 0 beobachtet wurde}
+			
+		Vorhersage an Stelle $ x \in \{0,1\}^n $:
+		
+		\begin{framed}
+			\[ y = argmax_{y' = 0,1} P[y'|x] \]
+		\end{framed}
+		
+		%TODO bin mir nicht sicher ob $ P[y = 1|x] + P[y = 0|x] = 1$ richtig
+		Dazu müssen wir ausrechnen: $ P[y = 1|x] $ und $ P[y = 0|x] $
+		\textcolor{blue}{Wegen $ P[y = 1|x] + P[y = 0|x] = 1$ reicht es eine der Wahrscheinlichkeiten auszurechnen} 
+		
+		\[ P[y = 1|x] \textcolor{red}{=} \frac{P[y = 1|x]}{P[x]} \textcolor{red}{=} \frac{P[x| y = 1]P[y = 1]}{P[x]} \]
+		
+		\textcolor{red}{Bayes Theorem}
+		
+		\[ = \frac{P[y = 1] \prod_{i = 1}^{n} P[x_i | y = 1]}{P[y = 0] \prod_{i = 1}^{n} P[x_i | y = 0] + P[y = 1] \prod_{i = 1}^{n} P[x_i | y = 1] }\]
+		\[ \frac{\phi_y \prod_{i = 1}^{n} \xj{1}^{x_i}(1- \xj{1})^{(1-x_i)}}{(1 - \phi_y) \prod_{i = 1}^{n} \xj{0}^{x_i}(1- \xj{0})^{(1-x_i)}} + \phi_y \prod_{i = 1}^{n} \xj{1}^{x_i}(1- \xj{1})^{(1-x_i)} \]
+		
+		\textcolor{red}{Beachte: Die Parameter $ \phi_y, \xj{0}, \xj{1} $ haben wir aus den Daten geschätzt}	
+	
+	\subsubsection*{Problem:}
+		
+		Falls feature $ x_i $ nicht in den Trainingsdaten auftaucht dann schätzen wir $ \xj{0} = \xj{1} = 0  $
+	
+	\subsubsection*{Lösungsidee:}
+		
+		Regularisierung, Laplace Smoothing
+		
+		\textcolor{blue}{Statt $ m $ Beobachtungen $ m + \underbrace{2n}_{\substack{\textcolor{red}{kuenstlich}}} $ Beobachtungen,wobei jedes feature einmal für $ y = 0 $ bzw. $ y = 1 $ künstlich beobachtet wurde.}
+		
+%			\begin{figure}
+%				\centering
+%				\includegraphics[width=0.7\linewidth]{graphs/plot7_1}
+%				\caption{Hyperwürfel mit Hyperebene die Entscheidungsfunktion repräsentiert}
+%			\end{figure}
+		
+		Naive Bayes Klassifikation ist wieder linear.
+		
+		\[ \phi_y \prod_{i = 1}^{n} \xj{1}^{x_i} (1 - \xj{1})^{(1 - x_j)}\]
+		\[ = \exp(log(\phi_y) + \sum_{i = 1}^{n} x_i log(\xj{1}) + \sum_{i = 1}^{n} (1-x_i) log(1 - \xj{1})) \]
+		\[ = \exp(\underbrace{\sum_{i = 1}^{n} \log(\frac{\xj{1}}{1- \xj{1}})}_{\substack{= X^T\Theta_i \quad, \Theta = (\Theta1,\dots,\Theta_n), \Theta_i = log(\frac{\xj{1}}{1-\xj{1}})}} + \underbrace{\log(\phi_y) + \sum_{i=1}^{n} \log(1 -\xj{1})}_{\substack{=_\Theta_0}})\]
+		
+		\[ \rightarrow P[y = 1| x] = \frac{1}{1 + \exp(- \Theta^~ x)} \]
+		\[ \rightarrow P[y = 0| x] = 1- \frac{1}{1 + \exp(- \Theta^~ x)} \]
+		\[ \rightarrow Linearer Klassifikator (wie bei gauss'scher Diskriminanzanalyse) \]
+		
+	\subsubsection*{}
