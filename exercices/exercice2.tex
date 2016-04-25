@@ -8,7 +8,6 @@
 \textcolor{red}{Es reicht zu zeigen, dass die Hesse-Matrix von $l(\Theta)$ negativ semidefinit ist.}
 
 %bild
-%remark
 \begin{framed}
 
 \[g(\epsilon) \frac{1}{1+\exp(-\epsilon)} \in (0,1) \quad\quad \text{logistische Funktion}\]
@@ -35,6 +34,74 @@ Wir wissen schon:
 \[ = - \Sigma^m_{i=1} \underbrace{h_\Theta(x^{(i)})}_{\substack{> 0}} \underbrace{(1- h_\Theta(x^{(i)}))}_{\substack{> 0}} x_j^{(i)} x_k^{(i)}\]
 Wir müssen zeigen, dass $v^T \quad H(\Theta)v \geq 0$ für alle $v \in \mathbb{R}^n$
 \[ \underbrace{H(\Theta)}_{\substack{\in \mathbb{R}^{n \times n}}} = (H_{kj}(\Theta)) = \left( \frac{\delta^2 l(\Theta)}{\delta\Theta_k \delta\Theta_j}\right)\]
-\[\]
+
+%Ich hoffe, dass es ab hier auch wirklich so weiter ging
+$H(\Theta)$ ist symmetrisch, da
+\[H_{kj}(\Theta) = - \Sigma^m_{i=1} h_\Theta (x^{(i)})(1-h_\Theta (x^{(i)})) x_j^{(i)} x_k^{(i)}\]
+\[= - \Sigma^m_{i=1} h_\Theta(x^{(i)})(1-h_\Theta(x^{(i)})) x_k^{(i)}x_j^{(i)}\]
+\[= H_{jk}(\Theta) = x_j\]
+negativ semi-definit
+\[H(\Theta) = - \Sigma^m_{i=1} h_\Theta(x^{(i)})(1-h_\Theta(x^{(i)})) \underbrace{x^{(i)}x^{(i)^T}}\]
+\begin{center}
+äußeres Produkt des i-ten Datenvektors mit sich selbst
+\end{center}
+Bsp. Äußeres Produkt:
+\[x = \left( \begin{array}{ccc} x_1 \\ x_2 \end{array} \right), \quad x x^T = \left( \begin{array}{ccc} x_1 \\ x_2 \end{array} \right) (x_1 x_2) \]
+\[= \left( \begin{array}{ccc} x_1x_1 \quad x_1x_2 \\ x_2x_1 \quad x_2x_2 \end{array} \right) = \left( \begin{array}{ccc} x_1^2 \quad x_1x_2 \\ x_2x_1 \quad x_2^2 \end{array} \right)\]
+\[ = \left( \begin{array}{ccc} x_1^2 \quad x_1x_2 \\ x_1x_2 \quad x_2^2 \end{array} \right)\]
+\begin{enumerate}[(1)]
+\item äußeres Produkt ist symmetrische Matrix
+\item äußeres Produkt ist semi-definit
+\end{enumerate}
+\[v^T (x x^T)v\]
+\[= (v^T)(x^T v)\]
+\[= (v^T)(v^T x)\]
+\[(v^T x)^2 \geq 0\]
+\begin{center}
+$xx^T$ aus Abbildung $\mathbb{R}^n \mapsto \mathbb{R}^n$\\
+$v \mapsto (xx^T)v = x(v^Tx)$
+\end{center}
+
+\subsection*{Statistische Modelle}
+\begin{enumerate}[1.]
+\item lineare Regression: \[p(y,x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp(- \frac{\lVert y- \Theta^T x \lVert^2_2}{2 \sigma^2})\]
+\item logistische Regression: \[P[y=1;x] = h_\Theta(x)\]
+\[P[y=0;x] = 1-h_\Theta(x)\]
+\end{enumerate}
+
+$h_\Theta(x) = \frac{1}{1+\exp(-\Theta^T x)}$ benutzt logistische Funktion $g(z) = \frac{1}{1+\exp(-z)}$
+1,2 sind konditionale Modelle, d.h. nur $y$ ist zufällig\\
+$y \in \mathbb{R}$ (lineare Regression)\\
+$y \in \{0,1\}$ (logistische Regression)\\
+$\Rightarrow x$ frei wählbar, Messung von $y$ an der Stelle $x$ ist Zufallsexperiment
+
+\begin{enumerate}
+\item[3.] Gauss'sche Diskriminanzanalyse (Klassifikation)
+\item[4.] Naive Bayes (Kontingenzanalyse)
+\end{enumerate}
+
+3,4 sind generative Modelle, d.h. sowohl $x$ als auch $y$ sind zufällig
+\item Likelihood-Funktion der Gauss'schen Diskriminanzanalyse
+\[L(\phi,\mu_0, \mu_1, \Sigma) = \prod^m_{i=1} p(x^{(i)},y^{(i)};\phi,\mu_0, \mu_1, \Sigma\]
+\[\phi \in [0,1], \quad\quad \mu_0, \mu_1 \in \mathbb{R}^n, \quad\quad \Sigma \in \mathbb{R}^{n \times n} \text{positiv definit}\]
+\[\text{Datenpunkte: } (x^{(1)},y^{(1)}, \dots , x^{(m)},y^{(m)})\]
+
+\begin{framed}
+Erinnerung: Likelihood-Funktion für logistische Regression:
+\[L(\Theta) = \prod^n_{i=1} P[y^{(i)} | x^{(i)}, \Theta]\]
+\end{framed}
+
+\begin{framed}
+Unterscheidung:
+\begin{enumerate}[1.]
+\item Zufallsvariable $x$ nimmt nur endlich viele Werte $\{1, \dots , k\}$ an. Dann kann $x = i$ eine Wahrscheinlichkeit $P[x = i]$ zuordnen.
+\item Zufallsvariable $x$ nimmt Werte in $\mathbb{R}$ an. Dann kann man den Ereignissen $X \in [a,b]$ eine Wahrscheinlichkeit zuordnen $P[X \in [a,b]] = \int^b_a p(x) dx$. Dabei ist $p:\mathbb{R} \rightarrow \mathbb{R}$ eine Wahrscheinlichkeitsdichte, d.h.
+
+\begin{enumerate}[(1.)]
+\item $\int^\infty_{- \infty} p(x) dx = 1$
+\item $p(x) \geq 0$
+\end{enumerate}
+\end{enumerate}
+\end{framed}
 
 \end{enumerate}
