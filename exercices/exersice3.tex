@@ -13,7 +13,7 @@ Modell:
 \item \[ P[y=1] = \phi\] , \[ P[y=0] = 1 - P[y=1] = 1 - \phi \]
 \item \[ P[x|y=1] = P[x_1,...,x_n | y] = \leftarrow \] \footnote{hier eine naive Annahme, dass alle $x$ von einander unabhängig sind.}  \\
 \[ = \prod_{i=1}^n P[x_i | y=1] = \prod_{i=1}^n \phi_{x_i = 1, y = 1}^{x_i} (1 - \phi_{x_i = 1, y = 1})^{1 - x_i} \] \\
-Analog: \[ P[x|y=0] = \prod_{i=1}^n P[x_i | y = 0] = \prod_{i=1}^n \phi_{x_i = 1, y = 0}^{x_i} (1 - \phi_{x_i = 1, y = 0})^{1 - x_i}\]
+Ana\log: \[ P[x|y=0] = \prod_{i=1}^n P[x_i | y = 0] = \prod_{i=1}^n \phi_{x_i = 1, y = 0}^{x_i} (1 - \phi_{x_i = 1, y = 0})^{1 - x_i}\]
 \end{enumerate}
 
 \textcolor{blue}{Modell Parameter: \[ \phi, \phi_{x_i = 1, y = 1} , \phi_{x_i = 1, y = 0} \] insgesamt $2n + 1$ Parameter.}\\
@@ -36,4 +36,64 @@ Schätze \[ \phi und \phi_{x_j,y=1} \]
 \[ \phi_{x_j,=1}^{ML} = \frac{ \sum_{i=1}^{m}( 1 - y^{(i)}x_{j}^{(i)} ) }{ \sum_{i=1}^{m}( 1 - y^{(i)} ) } \] \\
 Aufteilung der Daten in $y=1$ (Spam) und $y=0$ (nicht Spam).\\
 
-\[ l(\phi, \phi_{x_{j,y=1}},  \phi_{x_{j,y=0}}) = ...  \sum_{i=1}^{m} y^{(i)} log\phi + (1 - y^{(i)}) log(1 - \phi) \] \\
+\[ l(\phi, \phi_{x_{j,y=1}},  \phi_{x_{j,y=0}}) = ...  \sum_{i=1}^{m} y^{(i)} \log\phi + (1 - y^{(i)}) \log(1 - \phi) \] \\
+
+\[ \frac{\partial l}{\partial \phi} = \sum_{i=1}^{m} \frac{y^{(i)}}{\phi} - \frac{1 - y^{(i)}}{1 - \phi} \overset{!}{=} 0 \]
+
+\[ \Rightarrow \] \[ (1 - \phi) \sum_{i=1}^{m} y^{(i)} = \phi \sum_{i=1}^{m} y^{(i)} (1 - y^{(i)}) \]
+
+\[ \Rightarrow \] \[ \sum_{i=1}^{m} y^{(i)} y^{(i)} = \phi \sum_{i=1}^{m} y^{(i)} y^{(i)} 1 = \phi \cdot m \]
+
+\[ \Rightarrow \] \[ \phi = \frac{1}{m} sum_{i=1}^{m} y^{(i)} \]
+
+\[ l(\phi, \phi_{x_{j,y=1}}, \phi_{x_{j,y=0}}) = \] 
+
+\[... \sum_{i=1}^{m} y^{(i)} (x_{j}^{(i)} \log \phi_{x_j,y^{(i)}} + (1 - x_j^{(i)}) \log (1 - \phi _{x_j, y^{(i)}}) = ) \]
+
+\[ ... + sum_{i=1}^{m} (1 - y^{(i)}) (x_j^{(i)} \log \phi_{x_j,y=0}) + (1 - x_j^{(i)}) \log (1 - \phi_{x_j,y=0})) + ... \]
+
+\[ \frac{\partial l}{\partial \phi_{x_j,y=1}} = \sum_{i=1}^{m} \frac{y^{(i)} x_j^{(i)}}{\phi_{x_j,y=1}} -  \frac{y^{(i)} (1 - x_j^{(i)})}{1 - \phi_{x_j,y=1}} \]
+
+\[ \Rightarrow (1-\phi_{x_j,y=1}) \sum_{i=1}^m y^{(i)} x_{j}^{(i)} = \phi_{x,y=1} sum_{i=1}^m y^{(i)} (1 - x_j^{(i)}) \]
+
+\[ \Rightarrow \phi_{x,y=1} \frac{\sum_{i=1}^{m} y^{(i)}x_j^{(i)} }{\sum_{i=1}^m y^{(i)}} \]
+
+\textcolor{red}{ \[ \frac{\partial l}{\partial \phi_{x_j,y=0}} = \sum_{i=1}^{m} \frac{(1 - y^{(i)})x_j^{(i)}}{\phi_{x_j,y=0}} - \frac{(1 - y^{(i)})x_j^{(i)}}{1 - \phi_{x_j,y=0}} \overset{!}{=} 0 \] 
+\[ \phi_{x_j,y=0} = \frac{\sum_{i=1}^{m} (1 - y^{(i)})x_j^{(i)}}{\sum_{i=1}^{m}(1 - y^{(i)})} \]
+}
+
+\subsection{Aufgabe 1 aus dem Übungsblatt 3}
+Erweiterung auf \[ y = {1,...,k}\] \\
+Was ändert sich? 
+
+\begin{enumerate}
+\item \[ \phi_{x_j|y=l, l={1,...,k}} = \frac{\sum_{i=1}^{m} \chi_{ {y^{(i)} = l} }x_j^{(i)}}{\sum_{i=1}^{m} \chi_{ {y^{(i)} = l} }} \]
+
+Statt zwei Gruppen teilen wie die Experimente in k Gruppen auf. 
+
+\item \[ P[y=1] = \phi_1, P[y=2] = \phi_2, ..., P[y=k] = \phi_k \], \\
+wobei $\phi \geq 0$ für $i=1,...,k$ und $sum_{i=1}^{m} = 1$.
+\end{enumerate}
+
+\subparagraph{Ersetzung in der Likelihood-Funktion}
+
+\[ \prod_{i=1}^{m} \prod_{j=1}^{n} ... \phi_1^{\chi_{ {y^{(i)} = 1} }} ... \phi_k^{\chi_{ {y^{(i)} = k} }} \]
+
+\subparagraph{Übergang zur Log_Likelihood-Funktion} 
+
+\[ l(\phi_1,...,\phi_k) = ... + \sum_{i=1}^{m}[\chi_{ {y^{(i)=1} }} \log \phi_1 + ... + \chi_{ {y^{(i)=k} }} \log \phi_k ]= \]
+\[ = \sum_{i=1}^{m}\sum_{j=1}^{n} \chi_{ {y^{(i)} = j} } \phi_j \]
+
+Maximieren der Log-Likelihood-Funktion für die Parameter $\phi_1,...,\phi_k$. Achtung, im Gegensatz zu Problem zuvor, jetzt maximieren wir unter Nebenbedienungen $(\phi \geq 0; \sum_{i=1}^{k} \phi_i = 1)$. \\
+
+\subparagraph{Satz von Lagrange}
+Optimierungsproblem mit Gleichheitsbedienungen. \[ \max_{x \in \R} f(x), f:\R^n \rightarrow \R\]. \\
+Nebenbedienung: \[ g(x) = 0, g:\R^n \rightarrow \R \]. \\
+Für eine optimale Lösung \[ x \in \R^n \] gilt: 
+\[ \delta_x f(x*) = \lambda \cdot \delta_x g(x*)\] \footnote{$\delta \in \R$ wird Lagrange-Multiplikator genannt.}
+
+
+
+
+
+
