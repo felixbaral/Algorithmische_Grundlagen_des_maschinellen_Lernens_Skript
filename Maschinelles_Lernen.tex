@@ -16,12 +16,12 @@
 \usepackage{perpage} %the perpage package, used for footnotes
 \usepackage{pifont} %used for customized footnotes
 
-
-
 % symbol sequence: * \dagger \ddagger \S \P ...
 \MakePerPage{footnote} %the perpage package command
 %\renewcommand\thefootnote{\fnsymbol{footnote}}
 \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+
+\setlength\parindent{0pt} %komischen einzug verhindern
 
 
 \begin{document}
@@ -30,8 +30,10 @@
 
 \raggedright\textbf{\Huge Maschinelles Lernen}\\	
 		\begin{flushright}
-		Johannes Eifler und co\\
-		Matrikel: 144915\\
+		\textit{Oleksandr Goranskiy}\\
+		\textit{Sascha Turban}\\
+		\textit{Felix Baral}\\
+		\textit{Johannes Eifler}\\
 		Stand: \space \today \space \thistime
 		\end{flushright}
 
@@ -43,8 +45,8 @@
 \input{lectures/lecture2}
 \input{exercices/exercice1}
 \input{lectures/lecture3}
-%\input{lectures/lecture4}
-\input{lectures/lecture6}
+\input{lectures/lecture4}
 \input{exercices/exercice2}
+\input{lectures/lecture6}
 
 \end{document}

@@ -20,7 +20,7 @@
 			\end{gather*}
 %			\hskip
 			
-			\noindent \textcolor{red}{Sieht aus wie die logistische Regression ist aber anders: 				
+			 \textcolor{red}{Sieht aus wie die logistische Regression ist aber anders: 				
 				\begin{enumerate}
 					\item Generatives vs. Diskriminierendes Modell
 					\item $ \Theta $ bei logistischer Regression ist allgemeiner
@@ -80,7 +80,7 @@
 		
 			\[ \{x \in \mathbb{R}^n | \Theta^Tx + \Theta_0 = 0 \} \]
 		
-			\noindent Wie sieht die Entscheidungsgrenze Geometrisch aus? \\
+			 Wie sieht die Entscheidungsgrenze Geometrisch aus? \\
 			Fall $ \Theta_0 = 0: x: \Theta^Tx = 0$ \medskip \footnote{D.h. x muss senkrecht zum Vektor $ \Theta $ sein $ \Rightarrow $ Entscheidungsgrenze ist ein $ n-1 $- Dimensionaler Unterraum des $ \mathbb{R}^n $}
 			
 			%TODO Plot muss erstellt werden
@@ -90,7 +90,7 @@
 %				\caption{Entscheidungsgrenze wird durch einen Eindimensionalen Unterraum othogonal zu $ \Theta $}
 %			\end{figure}
 			
-			\noindent Fall $ \Theta_0 \neq 0 \Rightarrow$ Verschiebung des $ (n-1) $- Dimensionalen Unterraums
+			 Fall $ \Theta_0 \neq 0 \Rightarrow$ Verschiebung des $ (n-1) $- Dimensionalen Unterraums
 			
 			%TODO Plot muss erstellt werden
 %			\begin{figure}
@@ -100,12 +100,12 @@
 %			\end{figure}
 			
 			\subsubsection*{Einschub vektorisierte Schreibweise}
-			\noindent log-Likelihood Funktion für ligistische Regression:
+			 log-Likelihood Funktion für ligistische Regression:
 			
 			\[ l(\Theta) = \sum_{i = 1}^{m} y^{(i)} \log h_\Theta (x^{(i)}) + (1 - y^{(i)}) \log(1 - h_\Theta x^{(i)})\]
 			\[ h_\Theta (x^{(i)})  = \frac{1}{1 + \exp(- \Theta^T x^{(i)})}\]
 			
-			\noindent Vektorisieren:
+			 Vektorisieren:
 			
 			\[Datenmatrix \quad	X = 
 				\begin{matrix} \begin{pmatrix} x^{(1)^T} \\ \vdots \\ x^{(m)^T}	\end{pmatrix}  \end{matrix}
@@ -137,5 +137,5 @@
 				
 				\textcolor{red}{\[ \Theta_y, \Theta_{x_i,y = 1} (i=1,\dots,n), \Theta_{x_i,y = 0} (i=1,\dots,n)  \Rightarrow 2n + 1 \medspace Parameter\]}
 			
-			\noindent [Im ganz allgemeinen Modell haben wir $ 2^{n+1}-1 $ Parameter]
+			 [Im ganz allgemeinen Modell haben wir $ 2^{n+1}-1 $ Parameter]
 			
