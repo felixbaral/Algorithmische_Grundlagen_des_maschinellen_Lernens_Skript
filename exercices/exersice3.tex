@@ -1,0 +1,39 @@
+\section*{exercise 3 (22.04.2016)}
+
+\paragraph{Naive Bayes}
+
+\subsection{Wiederholung Bayes Modell}
+\begin{tabular}{lll}
+variate   & \{0,..,1\}   & \{0,..,k\}   \\
+covariate & \multicolumn{2}{l}{\{0,1\}}
+\end{tabular}
+
+Modell: 
+\begin{enumerate}
+\item \[ P[y=1] = \phi\] , \[ P[y=0] = 1 - P[y=1] = 1 - \phi \]
+\item \[ P[x|y=1] = P[x_1,...,x_n | y] = \leftarrow \] \footnote{hier eine naive Annahme, dass alle $x$ von einander unabhängig sind.}  \\
+\[ = \prod_{i=1}^n P[x_i | y=1] = \prod_{i=1}^n \phi_{x_i = 1, y = 1}^{x_i} (1 - \phi_{x_i = 1, y = 1})^{1 - x_i} \] \\
+Analog: \[ P[x|y=0] = \prod_{i=1}^n P[x_i | y = 0] = \prod_{i=1}^n \phi_{x_i = 1, y = 0}^{x_i} (1 - \phi_{x_i = 1, y = 0})^{1 - x_i}\]
+\end{enumerate}
+
+\textcolor{blue}{Modell Parameter: \[ \phi, \phi_{x_i = 1, y = 1} , \phi_{x_i = 1, y = 0} \] insgesamt $2n + 1$ Parameter.}\\
+
+Schätzten der Parameter aus den Daten: $(x^{(1)},y^{(1)}),...,(x^{(n)},y^{(n)})$.\\
+Dazu verwende Likelihood-Funktion: \\
+\[L(\phi, \phi_{x_i,y=1}, \phi_{x_i,y=0}) = \prod_{i=1}^{m} P[x^{(i)},y^{(i)}] = \]
+\[ = \prod_{i=1}^{m} P[x^{(i)}|y^{(i)}] \cdot P[y^{(i)}] = \]
+\[ \prod_{i=1}^{m} \prod_{j=1}^{n} [\phi_{x_{j}^{(i)},y_^{(i)}=1}^{x_j} \cdot (1 - \phi_{x_{j}^{(i)},y^{(i)}=1}^{x_j})^{1 - x_{j}^{(i)}} ] [\phi_{x_{j}^{(i)},y_^{(i)}=0}^{x_j} \cdot (1 - \phi_{x_{j}^{(i)},y^{(i)}=0}^{x_j})^{1 - x_{j}^{(i)}}]^{-y^(i)} \cdot \phi^{y^{(i)}} \cdot (1 - \phi)^{1 - y^{(i)}} \]
+
+\subsection{Aufgabe }
+
+Schätze \[ \phi und \phi_{x_j,y=1} \]
+
+\[ \phi_{ML} = \frac{1}{m} \cdot \sum_{i=1}^{m} y^{(i)} \]\footnote{Intuitiv und wie bei gaußscher Diskriminanzanalyse}
+\footnote{ML steht hier für Maximum-Likelihood} \\
+
+\[ \phi_{x_j,=1}^{ML} = \frac{\sum_{i=1}^{m} y^{(i)}x_{j}^{(i)} }{\sum_{i=1}^{m} y^{(i)}} \] [Aus den Experimenten/E-mails betrachten wir nur die jenigen, wo \[ y^{(i)} = 1 \] (Spam) ist. In dieser Teilmenge der Experimente zählen wir, wie oft $x_j = 1$ beobachtet wurde.\\
+
+\[ \phi_{x_j,=1}^{ML} = \frac{ \sum_{i=1}^{m}( 1 - y^{(i)}x_{j}^{(i)} ) }{ \sum_{i=1}^{m}( 1 - y^{(i)} ) } \] \\
+Aufteilung der Daten in $y=1$ (Spam) und $y=0$ (nicht Spam).\\
+
+\[ l(\phi, \phi_{x_{j,y=1}},  \phi_{x_{j,y=0}}) = ...  \sum_{i=1}^{m} y^{(i)} log\phi + (1 - y^{(i)}) log(1 - \phi) \] \\
