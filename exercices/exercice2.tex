@@ -104,4 +104,17 @@ Unterscheidung:
 \end{enumerate}
 \end{framed}
 
+\begin{framed}
+ Bayes Theorem:
+ \[p(x|y) = \frac{p(x,y)}{p(y)}\]
+ \[\Rightarrow p(x,y) = p(x|y)p(y)\]
+\end{framed}
+\[= \prod^m_{i=1} p(x^{(i)} | y^{(i)} ; \mu_0, \mu_1, \Sigma) P(y^{(i)}; \phi)\]
+\[= \prod^m_{i=1} p(x^{(i)} | y^{(i)} = 1; \mu_0, \Sigma)^{y^{(i)}} p(x^{(i)} | y^{(i)} = 0 ; \mu_1, \Sigma)^{1-y^{(i)}}\]
+\[= \left( \frac{1}{(2\pi)^{\frac{a}{2}}} |\Sigma|^{\frac{1}{2}}\right)^m \prod^m_{i=1} \exp(- \frac{1}{2}) (x^{(i)} \mu_1)^T \Sigma^{-1} (x^{(i)} - \mu_1))^{1-y^{(i)}} \exp(- \frac{1}{2}(x^{(i)} - \mu_0)^T \Sigma^{-1}(x^{(i)}-\mu_0))^{1-y^{(i)}}\]
+\[ \dots \phi^{y^{(i)}}(1-\phi)^{1-y^{(i)}}\]
+
+Notationeller Trick:
+\[a^{y^{(i)}} = a^{\tilde{x}_{\{y^{(i)} = 1\}}}\]
+\[\tilde{x}_{\{y^{(i)} = 1\}} = =\begin{cases}1&1, \text{falls} y^{(i)} = 1\\2&0, \text{falls} y^{(i)} = 0\end{cases}\]
 \end{enumerate}
