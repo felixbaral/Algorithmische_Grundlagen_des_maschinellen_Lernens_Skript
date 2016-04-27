@@ -1,6 +1,7 @@
 *.tmp
 Thumbs.db
 SRS.pdf
+*.backup
 
 # Word temporary
 ~$*.doc*
