@@ -67,4 +67,11 @@ Daten: $(x^{(1)},y^{(1)}),...,(x^{(n)},y^{(n)})$\\
 \item $Var(\epsilon) = \sigma^2$
 \end{itemize}
 \end{enumerate}
-
+Aus den Daten lernen wir das Modell $\hat{f} bzw \hat{f}(x)$ sind zufällige Größen.\\
+\textbf{Frage:} Wie gut ist unser Modell? Dazu betrachten wir den erwarteten quadratischen Fehler.
+$$E[(y-\hat{f}(x_0))^2 | x = x_0] $$
+$$= E[(y-E[\hat{f}(x_0)] + E[\hat{f}(x_0)] - \hat{f}(x_0)^2 | x = x_0] $$
+$$= E[(y-E(\hat{f}(x_0)^2] + 2E[
+\underbrace{
+\underbrace{(y-\hat{f}(x_0))}_{hier: y = zufällig}(\underbrace{E[\hat{f}(x_0)]-\hat{f}(x_0))}_{hier: f(x_0) = zufällig}}_{2E[(y-\hat{f}(x_0))] | x = x_0] \cdot \underbrace{E[E[\hat{f}(x_0)]-\hat{f}(x_0)]}_{=0}} | x = x_0] + E[E[\hat{f}(x_0)]-\hat{f}(x_0)^2]$$
+\todo{das soll jemand checken}
