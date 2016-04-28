@@ -1,0 +1,58 @@
+ \newcommand{\todo}[1]{\colorbox{red}{\textcolor{white}{TODO: #1}}}
+
+
+\documentclass[a4paper, 12pt]{scrartcl}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{scrtime} % for \thistime
+\usepackage{dsfont} %for \mathds
+\usepackage{framed}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=black]{hyperref}
+\usepackage{perpage} %the perpage package, used for footnotes
+\usepackage{pifont} %used for customized footnotes
+
+% symbol sequence: * \dagger \ddagger \S \P ...
+\MakePerPage{footnote} %the perpage package command
+%\renewcommand\thefootnote{\fnsymbol{footnote}}
+\renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+
+\setlength\parindent{0pt} %komischen einzug verhindern
+
+
+\begin{document}
+
+\begin{normalsize}
+
+\raggedright\textbf{\Huge Maschinelles Lernen}\\	
+		\begin{flushright}
+		\textit{Oleksandr Goranskiy}\\
+		\textit{Sascha Turban}\\
+		\textit{Felix Baral}\\
+		\textit{Johannes Eifler}\\
+		Stand: \space \today \space \thistime
+		\end{flushright}
+
+\end{normalsize}
+%\piccaption{Enigma} 
+%\parpic[l]{\includegraphics [width=0.6\linewidth]{enigma.jpg}}
+
+\input{lectures/lecture1}
+\input{lectures/lecture2}
+\input{exercices/exercice1}
+\input{lectures/lecture3}
+\input{lectures/lecture4}
+\input{exercices/exercice2}
+\input{lectures/lecture6}
+%\input{exercices/exercice3}
+\input{lectures/lecture7}
+\input{lectures/lecture8}
+
+\end{document}
