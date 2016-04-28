@@ -1,7 +1,7 @@
 \newcommand{\xj}[1]{\phi_{x_j, y=#1}}
 
 \section*{lecture 7 (25.04.2016}
-\subsection{Naive Bayes (Bsp. Kontingenzanalyse)}
+\subsection*{Naive Bayes (Bsp. Kontingenzanalyse)}
 	\subsubsection*{Parameter}
 		\[ P[y=1] = \phi_y \quad, y \in \{0,1\} Variates\]
 		\[ P[x_i|y=1] = \phi_{x_i, y = 1} \quad, x \in \{0,1\}^n Covariates  \Rightarrow x_i \in \{0,1\}\]
@@ -120,14 +120,14 @@
 	\subsubsection*{Es folgt:}
 		\[ P_ab = P[v_a - v_b \geq \epsilon_b - \epsilon_a] = \frac{1}{1+ \exp(-(v_a + v_b))}\]
 		\[ = \frac{\exp(v_a + v_b)}{\exp(v_a - v_b) +1} = \frac{\exp(v_a)}{\exp(v_a) + \exp(v_b)}  \]
-		\[ \Rightarrow \frac{P_{ab}}{1- P_{ab}} = \frac{P_{ab}}{P_{ba} \frac{\frac{\exp(v_a)}{\exp(v_a) + \exp(v_b)}}{\frac{\exp(v_b)}{\exp(v_a) + \exp(v_b)}} \]
+		\[ \Rightarrow \frac{P_{ab}}{1- P_{ab}} = \frac{P_{ab}}{P_{ba}} \frac{\frac{\exp(v_a)}{\exp(v_a) + \exp(v_b)}}{\frac{\exp(v_b)}{\exp(v_a) + \exp(v_b)}} \]
 		\[ \frac{\exp(v_a)}{\exp(v_b)} = \exp(v_a - v_b) \]
-		\[ \Rightarrow v_a - v_b = \log(\frac{P_{ab}}{1- P_{ab}}) \textcolor{red}{\text{$ P_{ab} $ ist nicht bekannt, dafür aber der Schätzwert $ t_{ab} $}}\]
+		\[ \Rightarrow v_a - v_b = \log(\frac{P_{ab}}{1- P_{ab}})\]
+		\[\textcolor{red}{\text{$ P_{ab} $ ist nicht bekannt, dafür aber der Schätzwert $ t_{ab} $}}\]
 		\[ v_{ab} = \log(\frac{t_{ab}}{1 - t_{ab}}) \]
 		
 		Wie im Probit Fall haben wir einen Schätzwert für die $ v_{ab} $ aus denen wir Schätzwerte für die $ v_a $ berechnen müssen
-		
-	\subsubsection*{}
+
 	
 	
 	
