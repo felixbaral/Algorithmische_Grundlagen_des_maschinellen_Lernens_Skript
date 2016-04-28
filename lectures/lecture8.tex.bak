@@ -91,7 +91,7 @@ $= (f(x_0) - E[\hat{f}(x_0)]) \cdot \underbrace{E[y - f(x_0) | x = x_0] = 0}_{
 }
 
 $$E[(y-\hat{f}(x_0))^2 | x=x_0] = \overbrace{E [(y-f(x_0))^2 | x = x_0]}^{Varianz des Rauschens E[\epsilon^2]=Var[\epsilon]=\sigma^2} + $$
-$$\underbrace{\underbrace{(f(x_0) - E(\hat{f}(x_0))])^2}_{BIAS (Modellierungsfehler)} + \underbrace{E[(E[\hat{f}(x_0))]-\hat{f}(x_0))^2}_{Varianz des Prediktors \hat{f}}}_{\text{Können wir kontrollieren durch Änderung der Berechnungsvorschrift für} \hat{f}}]$$
+$$\underbrace{\underbrace{(f(x_0) - E(\hat{f}(x_0))])^2}_{BIAS (Modellierungsfehler)} + \underbrace{E[(E[\hat{f}(x_0))]-\hat{f}(x_0))^2}_{Varianz des Prediktors \hat{f}}}_{Können wir kontrollieren durch Änderung der Berechnungsvorschrift für ]$$
 
 
 \begin{figure}[h]
