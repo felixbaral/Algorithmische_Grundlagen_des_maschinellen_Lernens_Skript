@@ -20,22 +20,22 @@ likelihood function:
 \[L(\Theta) = \prod^m_{i=1} p(y^{(i)}|x^{(i)};\Theta)\]
 the product form means: the observation $(x^{(1)},y^{(1)}), \dots , (x^{(i)}, y^{(i)})$ are independent of each other\\\\
 estimate:
-\[ \Theta_{ML} = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} L(\Theta) \]
-\[ = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} \prod^m_{i=1} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left(- \frac{(y^{(i)} - \Theta^T x^{(i)})^2}{2 \sigma^2}\right)\]
+\[ \Theta_{ML} = \underset{\Theta \in \mathbb{R}^{n+1}}{argmax} L(\Theta) \]
+\[ = \underset{\Theta \in \mathbb{R}^{n+1}}{argmax} \prod^m_{i=1} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left(- \frac{(y^{(i)} - \Theta^T x^{(i)})^2}{2 \sigma^2}\right)\]
 since we are only interested in the positoin where the maximum is attained we can apply a monoton transformation to $L(\Theta)$ with changing this position\\\\
 $\Rightarrow \log$-likelihood function: $l(\Theta) = \log L(\Theta)$
-\[ = \Theta_{ML} = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} l(\Theta)\]
-\[ = \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} \Sigma^m_{i=1} - \log (\sqrt{2\pi}\sigma) - \frac{1}{2\sigma}(y^{(i)} - \Theta^T x^{(i)})^2\]
-\[\stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} - \textcolor{red}{m \log (\sqrt{2\pi}\sigma)} - \frac{1}{2\textcolor{blue}{\sigma^2}}\Sigma^m_{i=1}(y^{(i)} - \Theta^T x^{(i)})^2  \]
+\[ = \Theta_{ML} = \underset{\Theta \in \mathbb{R}^{n+1}}{argmax} l(\Theta)\]
+\[ = \underset{\Theta \in \mathbb{R}^{n+1}}{argmax} \Sigma^m_{i=1} - \log (\sqrt{2\pi}\sigma) - \frac{1}{2\sigma}(y^{(i)} - \Theta^T x^{(i)})^2\]
+\[\underset{\Theta \in \mathbb{R}^{n+1}}{argmax} - \textcolor{red}{m \log (\sqrt{2\pi}\sigma)} - \frac{1}{2\textcolor{blue}{\sigma^2}}\Sigma^m_{i=1}(y^{(i)} - \Theta^T x^{(i)})^2  \]
 \begin{center}
 \textcolor{red}{does not depend on $\Theta$}\space\space\space \textcolor{blue}{scaling vector does not influence the optimal $\Theta$}
 \end{center}
-\[ \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} -\frac{1}{2} \Sigma^m_{i=1}(y^{(i)}-\Theta x^{(i)})^2\]
+\[ \underset{\Theta \in \mathbb{R}^{n+1}}{argmax} -\frac{1}{2} \Sigma^m_{i=1}(y^{(i)}-\Theta x^{(i)})^2\]
 $X$: data matrix\\
 $\Theta$: parameter vector\\
 $Y$: response vector
-\[\stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} -\frac{1}{2} \lVert X * \Theta - Y \lVert^2_2\]
-\[ \stackrel{argmax}{\Theta \in \mathbb{R}^{n+1}} \textcolor{red}{\frac{1}{2} \lVert X * \Theta - Y \lVert^2_2}\]
+\[\underset{\Theta \in \mathbb{R}^{n+1}}{argmax} -\frac{1}{2} \lVert X * \Theta - Y \lVert^2_2\]
+\[ \underset{\Theta \in \mathbb{R}^{n+1}}{argmax} \textcolor{red}{\frac{1}{2} \lVert X * \Theta - Y \lVert^2_2}\]
 \begin{center}
 \textcolor{red}{$L(\Theta)$ loss function}\\
 Minimizing the loss function that we discussed already\\
