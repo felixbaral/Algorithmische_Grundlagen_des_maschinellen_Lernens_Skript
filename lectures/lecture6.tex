@@ -1,7 +1,7 @@
 \section*{lecture 6 (20.04.2016)}
 	\subsection*{Gauss'sche Diskriminanzanalyse}
 		\subsubsection*{Bisher:}
-			Maximum Likelihood-Schätzung der Oarameter $\phi, \mu _0 \mu _1$
+			Maximum Likelihood-Schätzung der Parameter $\phi, \mu _0 \mu _1$
 			
 			\textcolor{red}{Eigentlich $\Sigma$ schätzen, das ist etwas aufwändiger}
 			\textcolor{red}{\[ \Sigma _{ML} = \sum_{i=1}^{m} \chi_{\{y^{(i)} = 1\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T + \sum_{i=1}^{m} \chi_{\{y^{(i)} = 0\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T \quad   \footnote{$(x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T$ ist Rang 1 Matrix}\]}
@@ -84,20 +84,22 @@
 			Fall $ \Theta_0 = 0: x: \Theta^Tx = 0$ \medskip \footnote{D.h. x muss senkrecht zum Vektor $ \Theta $ sein $ \Rightarrow $ Entscheidungsgrenze ist ein $ n-1 $- Dimensionaler Unterraum des $ \mathbb{R}^n $}
 			
 			%TODO Plot muss erstellt werden
-%			\begin{figure}
-%				\centering
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{graphs/dummy}
 %				\includegraphics[width=0.7\linewidth]{graphs/plot6_1}
-%				\caption{Entscheidungsgrenze wird durch einen Eindimensionalen Unterraum othogonal zu $ \Theta $}
-%			\end{figure}
+				\caption{Entscheidungsgrenze wird durch einen Eindimensionalen Unterraum othogonal zu $ \Theta $}
+			\end{figure}
 			
 			 Fall $ \Theta_0 \neq 0 \Rightarrow$ Verschiebung des $ (n-1) $- Dimensionalen Unterraums
 			
 			%TODO Plot muss erstellt werden
-%			\begin{figure}
-%				\centering
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{graphs/dummy}
 %				\includegraphics[width=0.7\linewidth]{graphs/plot6_2}
-%				\caption{a : Abstand des Unterraums zum Ursprung}
-%			\end{figure}
+				\caption{a : Abstand des Unterraums zum Ursprung}
+			\end{figure}
 			
 			\subsubsection*{Einschub vektorisierte Schreibweise}
 			 log-Likelihood Funktion für ligistische Regression:

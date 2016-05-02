@@ -2,7 +2,7 @@
 
 \paragraph{Naive Bayes}
 
-\subsection{Wiederholung Bayes Modell}
+\subsection*{Wiederholung Bayes Modell}
 \begin{tabular}{lll}
 variate   & \{0,..,1\}   & \{0,..,k\}   \\
 covariate & \multicolumn{2}{l}{\{0,1\}}
@@ -22,9 +22,12 @@ Schätzten der Parameter aus den Daten: $(x^{(1)},y^{(1)}),...,(x^{(n)},y^{(n)})
 Dazu verwende Likelihood-Funktion: \\
 \[L(\phi, \phi_{x_i,y=1}, \phi_{x_i,y=0}) = \prod_{i=1}^{m} P[x^{(i)},y^{(i)}] = \]
 \[ = \prod_{i=1}^{m} P[x^{(i)}|y^{(i)}] \cdot P[y^{(i)}] = \]
-\[ \prod_{i=1}^{m} \prod_{j=1}^{n} [\phi_{x_{j}^{(i)},y_^{(i)}=1}^{x_j} \cdot (1 - \phi_{x_{j}^{(i)},y^{(i)}=1}^{x_j})^{1 - x_{j}^{(i)}} ] [\phi_{x_{j}^{(i)},y_^{(i)}=0}^{x_j} \cdot (1 - \phi_{x_{j}^{(i)},y^{(i)}=0}^{x_j})^{1 - x_{j}^{(i)}}]^{-y^(i)} \cdot \phi^{y^{(i)}} \cdot (1 - \phi)^{1 - y^{(i)}} \]
 
-\subsection{Aufgabe }
+%TODO Den Teil >> \cdot \phi^{y^{(i)}} \cdot (1 - \phi)^{1 - y^{(i)}} << am Schluss habe ich nicht in meinen Unterlagen -Sascha
+\[ \prod_{i=1}^{m} \prod_{j=1}^{n} [\phi_{x_{j}^{(i)},y^{(i)}=1} ^{x_j} \cdot (1 - \phi_{x_{j}^{(i)},y^{(i)}=1}^{x_j})^{1 - x_{j}^{(i)}} ]^{y^{(i)}} [\phi_{x_{j}^{(i)},y^{(i)} =0} ^{x_j} \cdot (1 - \phi_{x_{j}^{(i)},y^{(i)}=0}^{x_j})^{1 - x_{j}^{(i)}}]^{1-y^(i)} \cdot \phi^{y^{(i)}} \cdot (1 - \phi)^{1 - y^{(i)}} \]   
+
+
+\subsection*{Aufgabe }
 
 Schätze \[ \phi und \phi_{x_j,y=1} \]
 
