@@ -27,7 +27,7 @@ Aus den Daten haben wir dann das beste $\Theta$ bzw. den besten Klassifikator be
 \[L_s(h) = \Sigma_{i=1}^m L(h,x^{(i)},y^{(i)})\]
 \[s = \{(x^{(1)}, y^{(1)}) , \dots ,(x^{(m)}, y^{(m)})\} \text{Sample}\]
 \textbf{Erwarteter Loss}:
-\[\acute{L}(h) = \Sigma_{y \in Y} \int_X L(h,x,y) \varphi(x,y) dx\]
+\[\hat{L}(h) = \Sigma_{y \in Y} \int_X L(h,x,y) \varphi(x,y) dx\]
 \textbf{Ziel}: Wähle Klassifikator mit möglichst kleinen erwarteten loss.\\
 \textbf{Problem}: Wir können den erwarteten Loss nicht ausrechnen da wir $\varphi$ nicht kennen. Den empirischen Loss können wir ausrechnen.
 
@@ -36,10 +36,43 @@ Aus den Daten haben wir dann das beste $\Theta$ bzw. den besten Klassifikator be
 Klassifikator mit empirischen Loss $ = 0$, aber kein gute Prediktor.\\
 \textbf{Idee}: Schränke die Klasse $F$ der potentiellen Klassifikatoren systematisch ein.
 
-\subsection*{Rademacher Komplexität von Funktionenklassen}
+\end{enumerate}
+
+\subsection*{Rademacher-Komplexität von Funktionenklassen}
 \begin{enumerate}[1.]
 \item $Z$ ist Menge; $F \subseteq \{f: Z \rightarrow \mathbb{R}\}$
 \item $\varphi$ Wahrscheinlichkeitsdichte auf $Z$. Wir können $\varphi$ anfragen, um Datenpunkte aus $Z$ zu bekommen.
-\item \textbf{Sample}: 
-\end{enumerate} 
+\item \textbf{Sample}: $z^{(1)}, \dots , z^{(m)}$ unabhängig von einander gemäß $\varphi$ aus $Z$ gezogen.
+\item Zufällige Label $\sigma^{(1)}, \dots , \sigma^{(m)} \in \{-1,1\}$ zufällig gleichverteilt aus $\{-1,1\}$ gezogen\\
+Empirische Rademacher-Komplexität:
+\[R_s(F) = E_\sigma \left[ \underset{t \in F}{\sup}  | \frac{2}{m} \Sigma^m_{i=1} \sigma^{(i)} f(z^{(i)}) \right] \]
+\[s= \{z^{(1)}, \dots , z^{(m)}\}\]
+Erwartete Rademacher-Komplexität:
+\[\hat{R}(F) = E_s [R_s(F)]\]
+$s$ hängt linear von $\varphi$ ab. D.h. kann nicht berechnet werden, da wir $\varphi$ nicht kennen.
 \end{enumerate}
+
+Rademacher Komplexität misst die \textbf{Kapazität} einer Funktionsklasse $F$ positiv mit zufälligen Labeln $\sigma$ zu korrelieren. Wichtiges Theorem zum arbeiten mit Rademann-Komplexität:
+
+\subsection*{Mc Diarmid's Theorem}
+Seien $x_1, \dots , x_n$ Zufallsvariablen, die Werte in einer Menge $A$ annehmen. Sei $f: A^m  \rightarrow \mathbb{R}$ eine Funktion, sodass \[ \left( \underset{x_1, \dots , x_n , x_i}{\sup} | f(x_1, \dots , x_n) - f(x_1, \dots , x_{i-1}, x_i, x_{i+1}, \dots , x_n) \right) \subseteq c_i \]
+\begin{addmargin}[2 cm]{0 cm}
+d.h. $f$ ist von beschränkter Variation in jeder Koordinate $x_i$.
+\end{addmargin}
+dann gilt für alle $\epsilon > 0$
+\begin{enumerate}[(1)]
+\item $P[f(x_1, \dots , x_n) - E[f(x_1, \dots, x_m)] \geq \epsilon] \leq \exp \left( - \frac{2 \epsilon^2}{\Sigma^m_{i=1} c_i^2}\right)$
+\item $P[E[f(x_1, \dots, x_m)] -f(x_1, \dots, x_m) \geq ] \leq  \exp \left( - \frac{2 \epsilon^2}{\Sigma^m_{i=1} c_i^2}\right)$
+\end{enumerate}
+
+\subsection*{Hauptsatz der Rademacher Theorie}
+Satz: Seien $\delta \in (0,1), \quad F \subseteq \{f: Z \rightarrow [0,1]\}, \varphi$ eine Wahrscheinlichkeitsdichte auf $Z$ und $s= \{z^{(1)}, \dots , z^{(m)}\}$ ein Sample das gemäß $\varphi$ unabhängig aus $Z$ gezogen wurde. Dann gilt mit Wahrscheinlichkeit $1-\delta$ für jeden $f \in F$, dass
+\[\underbrace{E[f(z)]}_{\substack{z \text{zuf. gemäß} \varphi}} = \underbrace{\frac{1}{m} \Sigma^m_{i=1} f(z^{(i)})}_{\substack{\text{können wir ausrechnen}}} + \underbrace{R_s(F)}_{\substack{\text{können wir ausrechnen}}} + \underbrace{3 \sqrt{\frac{m(\frac{2}{\delta})}{2n}}}_{\substack{\text{ wird kleiner, falls }  m \text{ groß wird, oder falls } 1-\epsilon\text{ klein ist }}}\]
+Anwendung: Sei $F \subseteq \{h: X \rightarrow Y\}$ mögliche Klassifikation und $F' = \{F \circ (h, id): X \times Y \rightarrow [0,1] | h \in F\}$ dann gilt für alle $h \in f$
+\begin{framed}
+\[ \underbrace{E[L(h)]}_{\substack{\hat{L}(h)}} \leq \underbrace{L_s(h)}_{\substack{(1)}} + \underbrace{R_s(F')}_{\substack{(2)}} +3\sqrt{\frac{\ln (\frac{2}{\delta})}{2m}}\]
+\end{framed}
+Mit Wahrscheinlichkeit mindestens $1-\delta$ für Sample\\
+$s = \{(x^{(1)},y^{(1)})\}$ das unabhängig gemäß $\phi$ gezogen wurde\\
+Falls $(1)$ klein wird, dann ist $(2)$ groß und umgekehrt (Trade-Off-Problem)\\\\
+\subsubsection*{Beweis}
