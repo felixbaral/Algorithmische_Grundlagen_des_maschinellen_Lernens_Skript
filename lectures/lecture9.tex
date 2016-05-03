@@ -1,0 +1,45 @@
+\section*{Lecture 9 (02.05.2016}
+\subsection*{Statistische Lerntheorie für binäre Klassifikation}
+
+\begin{enumerate}[1.]
+
+\item \textbf{Binäres Klassifikationsproblem}:
+
+\begin{itemize}
+\item $X$ Menge der Covariates (Bislang/typisch $\mathbb{R}^n$)
+\item $\{-1,1\}$ Variates
+\end{itemize}
+
+\textbf{Generatives Modell}: Wahrscheinlichkeitsdichte $\varphi$ auf $X \times X$\\
+$\varphi$ ist Orakel von dem wir $x, y$-Paare erfragen können.
+
+\item \textbf{Daten/Sample}: $(x^{(1)},y^{(1)}) , \dots ,(x^{(m)}, y^{(m)})$\\
+$m$-Datenpunkte, die unabhängig gemäß $\varphi$ gezogen wurden.
+
+\item \textbf{Klassifikatoren}: Klassifikator $h: X \rightarrow Y, \quad h\in F \subseteq \{f: X \rightarrow Y\}$\\
+\textbf{Ziel}: Gegeben die Datenpunkte, wähle guten Klassifikator aus $F$ aus. Bsp.: Logistische \textbf{Regression}:
+\[F = \{h_\Theta: \Theta \in \mathbb{R}^{n+1}\}\]
+Aus den Daten haben wir dann das beste $\Theta$ bzw. den besten Klassifikator bestimmt.
+\item \textbf{Loss-Funktion}: 
+\[L = F \times X \times Y \rightarrow [0,1]\]
+\[(h,x,y) \mapsto \frac{1}{2} |h(x)-y| = \begin{cases}1,& h(x) \neq y \\2,& h(x) = y\end{cases}\]
+\textbf{Empirischer Loss}:
+\[L_s(h) = \Sigma_{i=1}^m L(h,x^{(i)},y^{(i)})\]
+\[s = \{(x^{(1)}, y^{(1)}) , \dots ,(x^{(m)}, y^{(m)})\} \text{Sample}\]
+\textbf{Erwarteter Loss}:
+\[\acute{L}(h) = \Sigma_{y \in Y} \int_X L(h,x,y) \varphi(x,y) dx\]
+\textbf{Ziel}: Wähle Klassifikator mit möglichst kleinen erwarteten loss.\\
+\textbf{Problem}: Wir können den erwarteten Loss nicht ausrechnen da wir $\varphi$ nicht kennen. Den empirischen Loss können wir ausrechnen.
+
+%bild
+
+Klassifikator mit empirischen Loss $ = 0$, aber kein gute Prediktor.\\
+\textbf{Idee}: Schränke die Klasse $F$ der potentiellen Klassifikatoren systematisch ein.
+
+\subsection*{Rademacher Komplexität von Funktionenklassen}
+\begin{enumerate}[1.]
+\item $Z$ ist Menge; $F \subseteq \{f: Z \rightarrow \mathbb{R}\}$
+\item $\varphi$ Wahrscheinlichkeitsdichte auf $Z$. Wir können $\varphi$ anfragen, um Datenpunkte aus $Z$ zu bekommen.
+\item \textbf{Sample}: 
+\end{enumerate} 
+\end{enumerate}
