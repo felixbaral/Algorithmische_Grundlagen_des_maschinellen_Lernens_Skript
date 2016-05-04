@@ -1,0 +1,40 @@
+\newcommand{\cfbox}[2]{%
+	\colorlet{currentcolor}{.}%
+	{\color{#1}%
+		\fbox{\color{currentcolor}#2}}%
+}
+
+\section*{Lecture 10 (04.05.16)}
+\subsection*{Statistische Lerntheorie}
+	\[  \mathcal{F} \subseteq \{f:z \rightarrow [0,1]\},\medspace \varphi \text{ Dichte auf } z, \medspace S = \{z^{(1)}, \dots, z^{(m)}\} \footnote{Samle S unabhängig gemäß $ \varphi $ gezogen.}\] 
+		
+	\subsubsection*{Hauptsatz:}
+		Es gilt \underline{für alle}\footnote{Uniforme Schranke} $ f \in \mathcal{F}  $:
+		
+		\[ E[f(z)]\leq \frac{1}{m} \cfbox{red}{$ \sum_{i=1}^{m} f(z^{(i)}) $}\footnote{Ausrechnen für S} + \cfbox{red}{$ \mathcal{R}_s(\mathcal{F}) $}\footnote{Kann oft a priori ausgerechnet werden.} + 3 \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}}\]
+		
+		Mit Wahrscheinlichkeit mindestens $ 1 - \delta $.
+		
+	\subsubsection*{Beweis:}
+		\[ E[f(z)]  \leq \frac{1}{m} \sum_{i=1}^{m} f(z^{(i)}) + \cfbox{blue}{$ \underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})) $}\underset{\star}{\quad} \]
+		
+		\[ \overset{\star}{\quad}  \underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}) \leq \cfbox{blue}{$ E_s[\underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))] $}  \underset{\star \star}{\quad} + \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}}\]
+		
+		Mit Wahrscheinlichkeit $ 1 - \delta $. Aus McDiarmid's Ungleichung
+		
+		\[ \overset{\star\star}{\quad}  E_s[\underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})]\]
+		\[ = E_s[\underset{g \in \mathcal{F}}{\sup} (\frac{1}{m} \sum_{i=1}^{m}E[g(z'^{(i)})] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))] \]
+		
+		%TODO Text irgendwie schön unter formel packen
+		\textcolor{blue}{Sample $ S' = \{z'^{(1)}, \dots, z'^{(m)}\} $ unabhängig von S}
+		
+		\[ = E_s[\underset{g \in \mathcal{F}}{\sup} \medspace (E_{S}[\frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)})] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))] \footnote{Erwartungswert ist linear!}\] 
+		
+		\[ = E_s[\underset{g \in \mathcal{F}}{\sup} \medspace E_{S'}[\frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)})] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})| S] \] 
+		
+		\[ \leq E_s[E_{S'}[\underset{g \in \mathcal{F}}{\sup} \medspace \frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)}) - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})| S]] \]
+		
+		%TODO Text irgendwie schön unter formel packen
+		\textcolor{blue}{$ x_1,\dots, x_m \in \mathbb{R} $ Zufallvariablen, dann gilt:
+			\[ \underset{i = 1,\dots,m}{\max} E[x_i] \leq E[\underset{i = 1,\dots,m}{\max} x_i]\]}
+		\textcolor{red}{Immer $ x_j \leq \underset{i = 1,\dots,m}{\max} E[x_i]$}
