@@ -76,3 +76,16 @@ Mit Wahrscheinlichkeit mindestens $1-\delta$ für Sample\\
 $s = \{(x^{(1)},y^{(1)})\}$ das unabhängig gemäß $\phi$ gezogen wurde\\
 Falls $(1)$ klein wird, dann ist $(2)$ groß und umgekehrt (Trade-Off-Problem)\\\\
 \subsubsection*{Beweis}
+\[E [f(z)] \leq \frac{1}{m} \Sigma^m_{i=1} f(z^{(i)}) + \underbrace{\underset{g \in F}{\sup} (E[g(z)] - \frac{1}{m} \Sigma^m_{i=1} g(z^{(i)}))}_{\substack{(*)}}\]
+Mc Diarmids Theorem gilt mit Wahrscheinlichkeit mindestens $1-\delta$
+\[(*) \quad \underset{g \in F}{\sup}(E[g(z)] - \frac{1}{m} \Sigma^m_{i=1} g(z^{(i)})) \leq\]
+\[\underbrace{E_s[\underset{g\in F}{\sup}(E[g(z)] - \frac{1}{m} \Sigma^m_{i=1}g(z^{(i)}))]}_{\substack{(**)}} + \sqrt{\frac{\ln(\frac{2}{\delta})}{2m}}\]
+Hier haben wir definiert:
+\[\exp(- \frac{2\epsilon^2}{\Sigma^m_{i=1} c_i^2}) = \exp(- \frac{2 \epsilon^2}{\frac{1}{m}}) = \exp(-2 \epsilon^2 m) =: \frac{\delta}{2}\]
+Wir haben $c_i = \frac{1}{m}$
+\[\Rightarrow -2 \epsilon^2 m =  \ln (\frac{\delta}{2})\]
+\[\Rightarrow - \epsilon^2 = \frac{\ln (\frac{\delta}{2})}{2m}\]
+\[\epsilon = \frac{\sqrt{|\ln(\frac{\delta}{2})|}}{2m}\]
+%Bild
+$(**)$ Trick: $E[g(z)] = \frac{1}{m} \Sigma^m_{i=1} E[g(z'^{(i)})]$, wobei $s' = \{z'^{(1)}, \dots , z'^{m}\}$ Sample, das unabhängig gemäß $\varphi$ aus $z$ gezogen wurde.
+\[E_s[\underset{g \in F}{\sup} (\frac{1}{m} \Sigma^m_{i=1} E[g(z'^{(m)})] - \frac{1}{m} \Sigma^m_{i=1} g(z^{(i)}))]\]
