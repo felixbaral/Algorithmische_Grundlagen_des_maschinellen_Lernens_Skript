@@ -1,0 +1,149 @@
+\newcommand{\cfbox}[2]{%
+	\colorlet{currentcolor}{.}%
+	{\color{#1}%
+		\fbox{\color{currentcolor}#2}}%
+}
+
+\section*{Lecture 10 (04.05.16)}
+\subsection*{Statistische Lerntheorie}
+	\[  \mathcal{F} \subseteq \{f:z \rightarrow [0,1]\},\medspace \varphi \text{ Dichte auf } z, \medspace S = \{z^{(1)}, \dots, z^{(m)}\} \footnote{Samle S unabhängig gemäß $ \varphi $ gezogen.}\] 
+		
+	\subsubsection*{Hauptsatz:}
+		Es gilt \underline{für alle}\footnote{Uniforme Schranke} $ f \in \mathcal{F}  $:
+		
+		\[ E[f(z)]\leq \frac{1}{m} \cfbox{red}{$ \sum_{i=1}^{m} f(z^{(i)}) $}\footnote{Ausrechnen für S} + \cfbox{red}{$ \mathcal{R}_s(\mathcal{F}) $}\footnote{Kann oft a priori ausgerechnet werden.} + 3 \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}}\]
+		
+		Mit Wahrscheinlichkeit mindestens $ 1 - \delta $.
+		
+	\subsubsection*{Beweis:}
+		\[ E[f(z)]  \leq \frac{1}{m} \sum_{i=1}^{m} f(z^{(i)}) + \cfbox{blue}{$ \underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})) $}\underset{\star}{\quad} \]
+		
+		\[ \overset{\star}{\quad}  \underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}) \leq \cfbox{blue}{$ E_s[\underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))] $}  \underset{\star \star}{\quad} + \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}}\]
+		
+		Mit Wahrscheinlichkeit $ 1 - \delta $. Aus McDiarmid's Ungleichung
+		
+		\[ \overset{\star\star}{\quad}  E_s[\underset{g \in \mathcal{F}}{\sup} (E[g(z)] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})]\]
+		\[ = E_s[\underset{g \in \mathcal{F}}{\sup} (\frac{1}{m} \sum_{i=1}^{m}E[g(z'^{(i)})] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))] \]
+		
+		%TODO Text irgendwie schön unter formel packen
+		\textcolor{blue}{Sample $ S' = \{z'^{(1)}, \dots, z'^{(m)}\} $ unabhängig von S}
+		
+		\[ = E_s[\underset{g \in \mathcal{F}}{\sup} \medspace (E_{S}[\frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)})] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))] \footnote{Erwartungswert ist linear!}\] 
+		
+		\[ = E_s[\underset{g \in \mathcal{F}}{\sup} \medspace E_{S'}[\frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)})] - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})| S] \] 
+		
+		\[ \leq E_s[E_{S'}[\underset{g \in \mathcal{F}}{\sup} \medspace \frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)}) - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)})| S]] \]
+		
+		%TODO Text irgendwie schön unter formel packen
+		\textcolor{blue}{$ x_1,\dots, x_m \in \mathbb{R} $ Zufallvariablen, dann gilt:
+			\[ \underset{i = 1,\dots,m}{\max} E[x_i] \leq E[\underset{i = 1,\dots,m}{\max} x_i]\]}
+		\textcolor{red}{Immer $ x_j \leq \underset{i = 1,\dots,m}{\max} x_i$}
+		\textcolor{red}{$ E[x_j] \leq E[\underset{i = 1,\dots,m}{\max} x_i] $}
+		\textcolor{red}{$ \underset{j = 1,\dots,m}{\max}E[x_j] \leq E[\underset{i = 1,\dots,m}{\max} x_i] $}
+		
+		\textcolor{red}{$ \sigma' \in \{-1,1\} $}
+		\[ = E_s[E_{S'}[\underset{g \in \mathcal{F}}{\sup} \medspace\sigma'(\frac{1}{m} \sum_{i=1}^{m}g(z'^{(i)}) - \frac{1}{m} \sum_{i=1}^{m} g(z^{(i)}))| S]] \]
+		
+		\textcolor{red}{$ \sigma \in \{-1,1\}^m $}
+		\[ = E_\sigma[E_s[E_{S'}[\underset{g \in \mathcal{F}}{\sup} \medspace\frac{1}{m} \sum_{i=1}^{m} \sigma{(i)} g(z'^{(i)}) - \frac{1}{m} \sum_{i=1}^{m} \sigma^{(i)} g(z^{(i)}))| S]]] \]
+		
+		\[ \leq E_\sigma[E_s[E_{S'}[\underset{g \in \mathcal{F}}{\sup} \medspace |\frac{1}{m} \sum_{i=1}^{m} \sigma{(i)} g(z'^{(i)})| + |\frac{1}{m} \sum_{i=1}^{m} \sigma^{(i)} g(z^{(i)}))| \medspace | S]]] \]
+		
+		\[ = E_\sigma[E_s[\underset{g \in \mathcal{F}}{\sup} \medspace|\frac{2}{m} \sum_{i=1}^{m} \sigma^{(i)} g(z^{(i)})|]] \]
+		
+		\[ =\footnote{Vertauschen von Summation und Integration}\medspace E_s[E_\sigma[\underset{g \in \mathcal{F}}{\sup} \medspace|\frac{2}{m} \sum_{i=1}^{m} \sigma^{(i)} g(z^{(i)})|]] \]
+		
+		\[ E_s[\mathcal{R}_s(\mathcal{F})] = \cfbox{blue}{$ \hat{\mathcal{R} }_m( \mathcal{F}) $} \footnote{Erwartete Rademacher Komplexität} \] 
+		
+		\textcolor{red}{Im Hauptsatz brauchen wir aber die empirische Rademacher Komplexität}
+		
+	\subsubsection*{Behauptung:}
+		
+		\[\hat{\mathcal{R}}_m(\mathcal{F}) \leq \mathcal{R}_s(\mathcal{F}) + 2 \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}} \footnote{Hinweis: McDiarmids Ungleichung} \]
+		
+		\[ \mathcal{R}_s(\mathcal{F}) = \underset{\star\star}{\underbrace{E_\sigma[\underset{g \in \mathcal{F}}{\sup} \medspace|\frac{2}{m} \underset{\star}{\underbrace{\sum_{i=1}^{m} g(z^{(i)})}}|]}} \]
+
+		$\star 		\quad \text{Ein Summand spannt zwischen 0 und 1} $\\
+		$\star\star \quad m \text{ Variablen } z^{(1)}, \dots, z^{(m)} $\\
+		
+		
+		\textcolor{blue}{Variation in $ z^{(i)} $ ist beschränkt durch $ \frac{2}{m} $!} $\quad \Rightarrow $ McDiarmid's Ungleichung\\
+		
+		Mit Wk mindestens $ 1- \frac{\delta}{2} $ gilt:
+		
+		\[ \hat{\mathcal{R}}_m(\mathcal{F}) \leq \mathcal{R}_s(\mathcal{F}) + \epsilon\]
+		
+		\textcolor{red}{\[ \exp(\frac{2\varepsilon^2}{- \frac{1}{m} \sum_{i=1}^{m}(\frac{2}{m} )^2} ) =: \frac{\delta}{2}\]}
+		
+		\textcolor{red}{\[ \Rightarrow \exp(\frac{2 \varepsilon ^2}{- \frac{4}{m}} ) = \frac{\delta}{2}\]}
+		
+		\textcolor{red}{\[ \Rightarrow \exp(-\frac{\varepsilon^2 m}{2} ) = \frac{\delta}{2}\]}
+		\textcolor{red}{\[ \Rightarrow -\frac{\varepsilon^2 m}{2} = \ln(\frac{\delta}{2})\]}
+		\textcolor{red}{\[ \Rightarrow \varepsilon = \sqrt{2\frac{|\ln(\frac{\delta}{2})|}{m}} =  2 \sqrt{\frac{|\ln(\frac{\delta}{2})|}{2m}}\]}
+		
+	\subsubsection*{Zusammengefasst:}
+		\begin{enumerate}[1.]
+			\item Mit Wahrscheinlichkeit mindestens $ 1- \frac{\delta}{2} $
+			\[ E[f(z)] \leq \frac{1}{m} \sum_{i=1}^{m} f(z^{(i)}) + \hat{\mathcal{R}}_m(\mathcal{F})\]
+			\textcolor{red}{\[ \geq \text{höchstens } \frac{\delta}{2} \]}
+			\item Mit Wahrscheinlichkeit mindestens $ 1- \frac{\delta}{2} $
+			\[  \hat{\mathcal{R}}_m(\mathcal{F})  \leq \mathcal{R}_s(\mathcal{F}) + 2 \sqrt{\frac{|\ln(\frac{\delta}{2})|}{2m}} \]			
+			\textcolor{red}{\[ \geq \text{höchstens } \frac{\delta}{2} \]}
+		\end{enumerate}
+		
+		Die Wahrscheinlichkeit, dass mindestens eines der \textcolor{red}{komplementären} Ereignisse 1. oder 2. eintreten ist höchstens $ \delta $. \footnote{Union Bound: $ P[A \cup B] \leq P[A] + P[B] $}\\
+		
+		$ \Rightarrow $ die Ungleichunge q und 2 gelten zusammen mit mindestens $ 1 - \delta $\\
+		
+		$ \Rightarrow $ Mit Wahrscheinlichkeit mindestens $ 1 - \delta $:\\
+		
+		\[ \cfbox{red}{$ E[f(z)] \leq \frac{1}{m} \sum_{i=1}^{m} f(z^{(i)}) + \mathcal{R}_s(\mathcal{F}) + 3 \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}}, \medspace \text{für alle } f \in  \mathcal{F}$}\]
+		
+		\textcolor{blue}{\[ \ln(\frac{\delta}{2}) = \ln(\delta) - \ln(2), \delta \in (0,1) \Rightarrow \ln(\delta) \le 0 \]
+			\[ \Rightarrow |\ln(\frac{\delta}{2})| = |\ln(\delta) - \ln(2)| \]
+			\[ = \ln(2) - \ln(\delta) \]
+			\[ = \ln(\frac{2}{\delta}) \]
+		}
+		
+	\subsubsection*{Empirische Rademacher Komplexität von Linearen Funktionen}
+		 \[ \mathcal{F}_c = \{\mathbb{R}^n \ni x \longmapsto \Theta^T x | ||\Theta|| \leq c \} \]
+		 
+		 \textcolor{red}{Lineare Funktionen tauchen in Linearer Regression, logistischer Regression, gauss'scher Diskriminanzanalyse und in naive Bayes auf!}
+		 
+		 Sei $ S = \{z^{(1)}, \dots, z^{(m)}\} $ Sample aus $ \mathbb{R}^n $, das gemäß $ \varphi $ auf $ \mathbb{R} ^n$ unabhängig gezogen wurde.\\
+		 
+		 Es gilt:
+		 \[ \mathcal{R}_s(\mathcal{F}_c) = E_\sigma[\underset{f \in \mathcal{F}}{\sup} |\frac{2}{m} \sum_{i=1}^{m} f(z^{(i)})|]\]
+		 \[ =  E_\sigma[\underset{\Theta \in \mathbb{R}^n, ||\Theta|| \leq c}{\sup} |\frac{2}{m} \sum_{i=1}^{m} \Theta^T z^{(i)}|] \]
+		 \[ =  E_\sigma[\underset{\Theta \in \mathbb{R}^n, ||\Theta|| \leq c}{\sup} |\frac{2}{m} \Theta^T \sum_{i=1}^{m} \sigma^{(i)} z^{(i)}|] \]
+		 \[ \footnote{Cauchy-Schwartzsche Ungleichung} \leq  E_\sigma[\underset{\Theta \in \mathbb{R}^n, ||\Theta|| \leq c}{\sup} \frac{2}{m} ||\Theta||\medspace ||\sum_{i=1}^{m} \sigma^{(i)} z^{(i)}||] \]
+		 \[ =  E_\sigma[ \frac{2c}{m} ||\sum_{i=1}^{m} \sigma^{(i)} z^{(i)}||] \]
+		 \[ =  \frac{2c}{m} E_\sigma[ ||\sum_{i=1}^{m} \sigma^{(i)} z^{(i)}||] \]
+		 \[ =  \frac{2c}{m} E_\sigma[ \sqrt{(\sum_{i=1}^{m} \sigma^{(i)} z^{(i)})^T\sum_{i=1}^{m} \sigma^{(i)} z^{(i)}}] \]
+		 \[ \leq   \frac{2c}{m} \sqrt{E_\sigma[(\sum_{i=1}^{m} \sigma^{(i)} z^{(i)})^T\sum_{j=1}^{m} \sigma^{(j)} z^{(j)}]} \]
+	 	
+	 	%TODO Plot muss erstellt werden
+		\begin{figure}[H]
+			\centering
+			\begin{minipage}[]{0.45\linewidth}
+				\centering
+				\includegraphics[width=.75\linewidth]{graphs/dummy}
+%				\includegraphics[width=.75\linewidth]{graphs/plot10_1}
+				\caption{Konkavität der Wurzelfunktion}
+			\end{minipage}% <- sonst wird hier ein Leerzeichen eingefügt
+			\hfill
+			\begin{minipage}[]{0.45\linewidth}
+					\textcolor{red}{Jensen's Ungleichung}\\
+					Die Wurzelfunktion ist konkav:
+					\[ f(\lambda x + (1- \lambda) y) \geq \lambda f(x) + (1-\lambda) f(y) \]
+			\end{minipage}
+		\end{figure}
+		
+		\[ =   \frac{2c}{m} \sqrt{E_\sigma[\sum_{i,j=1}^{m} \sigma^{(i)} \sigma^{(j)} z^{(i)^T} z^{(j)}} \]
+		\[ =   \frac{2c}{m} \sqrt{\sum_{i,j=1}^{m} E_\sigma[ \sigma^{(i)} \sigma^{(j)} z^{(i)^T} z^{(j)}} \]
+		\[ =   \frac{2c}{m} \sqrt{[\sum_{i,j=1}^{m} z^{(i)^T} z^{(j)}} \]
+		\[ = \frac{2c}{m} \sqrt{spur(k)}, k = (k_{i,j}) = (z^{(i)^T}z^{(j)}) \footnote{Gram-Matrix, Kernel Matrix}\]
+		
+		
+		
+				
