@@ -64,13 +64,14 @@
 		\[ \mathcal{R}_s(\mathcal{F}) = \underset{\star\star}{\underbrace{E_\sigma[\underset{g \in \mathcal{F}}{\sup} \medspace|\frac{2}{m} \underset{\star}{\underbrace{\sum_{i=1}^{m} g(z^{(i)})}}|]}} \]
 
 		$\star 		\quad \text{Ein Summand spannt zwischen 0 und 1} $\\
-		$\star\star \quad m \text{ Variablen } z^{(1)}, \dots, z^{(m)} $
+		$\star\star \quad m \text{ Variablen } z^{(1)}, \dots, z^{(m)} $\\
 		
-		\textcolor{blue}{Variation in $ z^{(i)} $ ist beschränkt durch $ \frac{2}{m} $!}\\
-		$ \Rightarrow $ McDiarmid's Ungleichung\\
+		
+		\textcolor{blue}{Variation in $ z^{(i)} $ ist beschränkt durch $ \frac{2}{m} $!} $\quad \Rightarrow $ McDiarmid's Ungleichung\\
+		
 		Mit Wk mindestens $ 1- \frac{\delta}{2} $ gilt:
 		
-		\[ \hat{\mathcal{R}}_m(\mathcal{F} \leq \mathcal{R}_s(\mathcal{F} + \epsilon\]
+		\[ \hat{\mathcal{R}}_m(\mathcal{F}) \leq \mathcal{R}_s(\mathcal{F}) + \epsilon\]
 		
 		\textcolor{red}{\[ \exp(\frac{2\varepsilon^2}{- \frac{1}{m} \sum_{i=1}^{m}(\frac{2}{m} )^2} ) =: \frac{\delta}{2}\]}
 		
@@ -99,7 +100,7 @@
 		\[ \cfbox{red}{$ E[f(z)] \leq \frac{1}{m} \sum_{i=1}^{m} f(z^{(i)}) + \mathcal{R}_s(\mathcal{F}) + 3 \sqrt{\frac{|\ln(\frac{2}{\delta})|}{2m}}, \medspace \text{für alle } f \in  \mathcal{F}$}\]
 		
 		\textcolor{blue}{\[ \ln(\frac{\delta}{2}) = \ln(\delta) - \ln(2), \delta \in (0,1) \Rightarrow \ln(\delta) \le 0 \]
-			\[ \Rightarrow |\ln(\frac{\delta}{2})| |\ln(\delta) - \ln(2)| \]
+			\[ \Rightarrow |\ln(\frac{\delta}{2})| = |\ln(\delta) - \ln(2)| \]
 			\[ = \ln(2) - \ln(\delta) \]
 			\[ = \ln(\frac{2}{\delta}) \]
 		}
@@ -120,20 +121,23 @@
 		 \[ =  \frac{2c}{m} E_\sigma[ ||\sum_{i=1}^{m} \sigma^{(i)} z^{(i)}||] \]
 		 \[ =  \frac{2c}{m} E_\sigma[ \sqrt{(\sum_{i=1}^{m} \sigma^{(i)} z^{(i)})^T\sum_{i=1}^{m} \sigma^{(i)} z^{(i)}}] \]
 		 \[ \leq   \frac{2c}{m} \sqrt{E_\sigma[(\sum_{i=1}^{m} \sigma^{(i)} z^{(i)})^T\sum_{j=1}^{m} \sigma^{(j)} z^{(j)}]} \]
-		 
-		 
-		 \textcolor{red}{Jensen's Ungleichung}
 	 	
 	 	%TODO Plot muss erstellt werden
-	 	\begin{figure}[h]
-	 		\centering
-	 		\includegraphics[width=0.3\linewidth]{graphs/dummy}
-	 		%				\includegraphics[width=0.7\linewidth]{graphs/plot10_1}
-	 		\caption{Konkavität der Wurzelfunktion}
+		\begin{figure}[H]
+			\centering
+			\begin{minipage}[]{0.45\linewidth}
+				\centering
+				\includegraphics[width=.75\linewidth]{graphs/dummy}
+%				\includegraphics[width=.75\linewidth]{graphs/plot10_1}
+				\caption{Konkavität der Wurzelfunktion}
+			\end{minipage}% <- sonst wird hier ein Leerzeichen eingefügt
+			\hfill
+			\begin{minipage}[]{0.45\linewidth}
+					\textcolor{red}{Jensen's Ungleichung}\\
+					Die Wurzelfunktion ist konkav:
+					\[ f(\lambda x + (1- \lambda) y) \geq \lambda f(x) + (1-\lambda) f(y) \]
+			\end{minipage}
 		\end{figure}
-		
-		Die Wurzelfunktion ist konkav:
-		\[ f(\lambda x + (1- \lambda) y) \geq \lambda f(x) + (1-\lambda) f(y) \] 
 		
 		\[ =   \frac{2c}{m} \sqrt{E_\sigma[\sum_{i,j=1}^{m} \sigma^{(i)} \sigma^{(j)} z^{(i)^T} z^{(j)}} \]
 		\[ =   \frac{2c}{m} \sqrt{\sum_{i,j=1}^{m} E_\sigma[ \sigma^{(i)} \sigma^{(j)} z^{(i)^T} z^{(j)}} \]
