@@ -1,5 +1,15 @@
- \newcommand{\todo}[1]{\colorbox{red}{\textcolor{white}{TODO: #1}}}
+%% Benutzerdefinierte Kommandos
 
+	\newcommand{\todo}[1]{\colorbox{red}{\textcolor{white}{TODO: #1}}}
+	
+	\newcommand{\cfbox}[2]{%
+		\colorlet{currentcolor}{.}%
+		{\color{#1}%
+			\fbox{\color{currentcolor}#2}}%
+	}
+
+
+%% Pakete 
 
 \documentclass[a4paper, 12pt]{scrartcl}
 \usepackage{ucs}
@@ -58,5 +68,7 @@
 \input{lectures/lecture8}
 \input{lectures/lecture9}
 \input{lectures/lecture10}
-
+\input{exercices/exercise4}
+\input{lectures/lecture11}
+\input{lectures/lecture12}
 \end{document}
