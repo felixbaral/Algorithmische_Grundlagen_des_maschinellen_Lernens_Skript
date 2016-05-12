@@ -1,8 +1,279 @@
 \bgroup
-
+\newcommand{\vi}[2]{#1^{(#2)}}
+\newcommand{\data}{(x^{(i)},y^{(i)}),\dots,(x^{(m)},y^{(m)})}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\minn}[1]{\underset{#1}{\min}\medspace}
+\newcommand{\maxx}[1]{\underset{#1}{\max}\medspace}
 \newcommand{\xj}[1]{\phi_{x_j, y=#1}}
+\newcommand{\nalph}{\vi{\hat{\alpha}}{i}}
+\newcommand{\gi}[1]{\vi{g}{i}(#1)}
+\newcommand{\lagra}[2]{L(#1,#2)}
+\newcommand{\su}[1]{\sum_{#1 = 1}^{m}}
 
 \section*{Lecture 12 (11.05.16)}
-
+	\subsection*{Support Vektor Maschine}
+	\paragraph*{Daten:}
+		\[ \data \in \R^n \times \{-1,1\} \]
+		\[ P = \{\vi{x}{i} | \vi{y}{i} = 1\} \]
+		\[ Q = \{\vi{x}{i} | \vi{y}{i} = -1\} \]
+	\paragraph{Annahme:}
+		Es gibt eine Hyperebene, die $ P $ und $ Q $ trennt:
+		
+		%TODO Plot muss erstellt werden
+		\begin{figure}[H]
+			\centering
+			\begin{minipage}[]{0.45\linewidth}
+				\[ v^T\vi{x}{i} + a \geq 0 ,\quad \vi{x}{i} \in P\]
+				\[ v^T\vi{x}{i} + a \leq 0 ,\quad \vi{x}{i} \in Q\]
+			\end{minipage}
+			\hfill
+			\begin{minipage}[]{0.45\linewidth}
+				\centering
+				\includegraphics[width=.75\linewidth]{graphs/dummy}
+				%				\includegraphics[width=.75\linewidth]{graphs/plot12_1}
+				\caption{Trennbarkeit von P und Q durch Hyperebene}
+			\end{minipage}% <- sonst wird hier ein Leerzeichen eingefügt
+		\end{figure}
+		
+		Der zu $ (v,a) $ gehörende Klassifikator ist:
+		\[ x \longmapsto sign(v^Tx + a) \]
+		
+		Sei \cfbox{red}{$ c \minn{\vi{x}{i} \in P \cup Q } |v^T\vi{x}{i} + a|$}, Annahme $ c > 0   $\\
+		
+		\begin{minipage}[]{0.45\linewidth}
+			
+			\[\Rightarrow v^T\vi{x}{i} + a \geq c, \quad \vi{x}{i} \in P\]
+			\[v^T\vi{x}{i} + a \leq -c, \quad \vi{x}{i} \in Q\]
+		\end{minipage}
+		\hfill
+		\begin{minipage}[]{0.45\linewidth}
+			\[\Rightarrow \frac{1}{c}v^T\vi{x}{i} + \frac{1}{c}a \geq 1, \quad \vi{x}{i} \in P\]
+			\[\frac{1}{c}v^T\vi{x}{i} + \frac{1}{c}a \leq -1, \quad \vi{x}{i} \in Q\]			
+		\end{minipage}\\
+		
+		
+		Sei $ w = \frac{1}{c}v $ und $ b = \frac{1}{c} a $:\\
+		
+		\[ w^T\vi{x}{i} + b \geq 1, \quad \vi{x}{i} \in P\]
+		\[ w^T\vi{x}{i} + b \leq -1, \quad \vi{x}{i} \in Q\]
+		
+		Geometrischer Marin der durch w und b gegebenen Hyperebene ist definiert als der Abstand der Hyperebenen $ H_1 = \{ x | w^Tx + b = 1 \} $ und $ H_{-1} = \{ x | w^Tx + b = - 1 \} $
+		
+		%TODO Plot muss erstellt werden
+		\begin{figure}[H]
+			\centering
+			\begin{minipage}[]{0.45\linewidth}
+				\[ \underset{\text{Abstand von } H_1 \text{ und } H_{-1} }{\underbrace{|\frac{-b -1}{||w||} - \frac{-b + 1}{||w||} |}} = \frac{2}{||w||} \]
+			\end{minipage}
+			\hfill
+			\begin{minipage}[]{0.45\linewidth}
+				\centering
+				\includegraphics[width=.75\linewidth]{graphs/dummy}
+				%				\includegraphics[width=.75\linewidth]{graphs/plot12_2}
+				\caption{Abstand der Hyperebenenen $ H_1 $ und $ H_{-1} $}
+			\end{minipage}% <- sonst wird hier ein Leerzeichen eingefügt
+		\end{figure}
+		
+		%TODO Plot muss erstellt werden
+		\begin{figure}[H]
+			\centering
+			\begin{minipage}[]{0.45\linewidth}
+				\centering
+				\includegraphics[width=.75\linewidth]{graphs/dummy}
+				%				\includegraphics[width=.75\linewidth]{graphs/plot12_3}
+				\caption{Zwei unterschiedliche Hyperebenen zwischen $ P $ und $ Q $ mit unterschiedlichem Margin}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[]{0.45\linewidth}
+				Geometrische Intuition:\\
+				Großer geometrischer Margin ergibt bessere Klassifikation.
+			\end{minipage}% <- sonst wird hier ein Leerzeichen eingefügt
+		\end{figure}
+		
+	\paragraph*{Ziel:}	
+		Wähle Hyperebene mit größtem Margin\\
+		\begin{center}
+			\cfbox{red}{$\begin{array}{lll}
+					 \multicolumn{2}{l}{\maxx{w,b} \frac{2}{||w||}} \\
+						\text{S.T. } & w^T\vi{x}{i} + b \geq  1, & \vi{x}{i} \in P\\
+						&w^T\vi{x}{i} + b \leq -1, & \vi{x}{i} \in Q
+					\end{array}$}
+		\end{center}
+		
+		Da wir an optimalen w und b interessiert sind(nicht so sehr am optimalen Funktionswert):\\
+		
+		\begin{equation*}
+			\begin{array}{ll}
+				\maxx{w,b} \frac{2}{||w||}\\ \left.
+				\begin{array}{lll}
+					\text{S.T. } & w^T\vi{x}{i} + b \geq  1, & \vi{x}{i} \in P\\
+					& w^T\vi{x}{i} + b \leq -1, & \vi{x}{i} \in Q
+				\end{array} \right\} &  \vi{y}{i}(w^T\vi{x}{i} + b) \geq 1
+			\end{array}
+		\end{equation*}
+		
+		\begin{center}
+			\cfbox{red}{%
+				$\begin{array}{lll}
+					\multicolumn{2}{l}{\maxx{w,b} \frac{2}{||w||}} \\
+					\text{S.T. } & \vi{y}{i}(w^T\vi{x}{i} + b) \geq 1
+				\end{array}$} \textcolor{red}{Primale Hard Margin SVM}
+		\end{center}
+		
+	\subsection*{Exkurs:} Dualität in der komplexen Optimierung\\
+		
+		\begin{minipage}[]{0.45\linewidth}
+			\begin{equation*}
+				\begin{array}{lll}
+					\multicolumn{2}{l}{\minn{x \in \R} \medspace f(x)} \\
+					\text{S.T.} & \vi{g}{i}(x) \leq 0, & i = 1,\dots,m 
+				\end{array}
+			\end{equation*}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[]{0.45\linewidth}
+			Annahme:\\
+			$ f $ und die $ \vi{g}{i}$ sind konvex und differenzierbar
+		\end{minipage}\\
+				
+		Die Lagrange Funktion von $ (\ast) $ ist
+		
+		\begin{center}
+			\cfbox{red}{%
+				$ L(\hat{x}, \alpha) = f(x) + \sum_{i = 1}^{m} \vi{\alpha}{i} \vi{g}{i} (x)$}, $ \vi{\alpha}{i}  \in [0, \infty ) := \R_+$
+		\end{center}
+		
+		\paragraph*{Annahme:} Die Lagrangefunktion hat einen Sattelpunkt $ (\hat{x}, \hat{\alpha}) $:\\
+		
+		$ L(\hat{x}, \alpha) \underset{\textcolor{red}{I.}}{\leq} L(\hat{x}, \hat{\alpha}) \underset{\textcolor{red}{II.}}{\leq} L(x, \hat{\alpha})$, für alle $ x \in \R^n$, $\alpha \in \R^n_+ $
+		
+		\subsubsection*{Lemma:}
+			\begin{enumerate}[1.]
+				\item $ L(\hat{x}, \hat{\alpha})  =  f(x)$
+				\item $ f(\hat{x}) \leq f(x)$ für alle zuläsigen $ x \in \R^n $ \textcolor{red}{d.h. $ \vi{g}{i}(x) \leq 0, \medspace i = 1,\dots,m $}
+				\item $ \hat{x} $ ist zulässig
+			\end{enumerate}
+		
+		\paragraph{Beweis:}
+			
+			
+			\begin{enumerate}
+				\item Es gilt sogar $ \underset{\textcolor{red}{\substack{\text{wird als complementary} \\ \text{Slackness bezeichnet} }}}{\underbrace{\vi{\hat{\alpha}}{i}\vi{g}{i}(\hat{x})}} = 0, \medspace i = 1,\dots,m$ \\
+				
+				für Widerspruch, Annahme: $ \vi{\hat{\alpha}}{i}\vi{g}{i}(\hat{x}) \neq 0 $\\
+				\[ \Rightarrow \vi{\hat{\alpha}}{i} \neq 0 \Rightarrow \vi{\hat{\alpha}}{i} > 0 \]
+				Zwei Fälle:
+				\begin{enumerate}[i)]
+					\item $ \gi{\hat{x}} < 0 $, dann gilt für $ \vi{\alpha}{i}= \vi{\hat{\alpha}}{i} - \epsilon$\\
+					
+						$ \vi{\hat{\alpha}}{i}\vi{g}{i} (\hat{x}) < \underset{\vi{\alpha}{i}}{\underbrace{(\nalph- \epsilon)}}\vi{g}{i}(\hat{x})$\\
+						
+						Im Widerspruch zur I. Sattelpunktungleichung.
+					\item$ \gi{\hat{x}}  > 0.$ Dann gilt $ \vi{\alpha}{i} = \nalph + \epsilon, \quad\epsilon>0 $\\
+					
+						$ \nalph\gi{\hat{x}} < (\nalph+ \epsilon)\gi{\hat{x}} $, Widerspruch!
+				\end{enumerate}
+				
+				\item $ f(\hat{x})= \lagra{\hat{x}}{\hat{\alpha}} \leq \lagra{x}{\hat{\alpha}} = f(x) + \sum_{i = 1}^{m} \nalph \underset{\substack{\leq 0, \text{ da } x\text{ als}\\ \text{ zulässig vorausgesetzt}}}{\underbrace{\gi{x}}}$
+				
+				\item $ \hat{x} $ ist zulässig. Annahme: $ \hat{x} $ ist nicht zulässig, d.h. es gibt $ i $, so dass $ \nalph\gi{\hat{x}} = 0$ und $ \underset{\textcolor{red}{\text{Verletzung der Nebenbedingung  }\gi{\hat{x}} \geq 0 }}{\gi{\hat{x}} > 0}$\\
+				
+				Es gilt für $ \vi{\alpha}{i} = \nalph + \epsilon, \quad \epsilon > 0,$ dass $ \vi{\alpha}{i} \gi{\hat{x}} = (\nalph + \epsilon) \gi{\hat{x}}> \nalph\gi{\hat{x}}$\\
+				
+				Im Widerspruch zur I. Ungleichung der Sattelpunktbedingung!
+			\end{enumerate}
+			
+		\paragraph*{Duales Problem aus der Sattelpunktbedingung}
+			
+			\newcommand{\inalp}{\alpha \in \R^m_+}
+			\newcommand{\inx}{x \in \R^n}
+			
+			$ \maxx{\inalp} \minn{\inx} \leq \maxx{\inalp} \lagra{\hat{x}}{\alpha} \leq \lagra{\hat{x}}{\hat{\alpha}} \leq \minn{\inx}\lagra{x}{\hat{\alpha}} \maxx{\inalp} \minn{\inx} \lagra{x}{\alpha}\footnote{$ x^*, \alpha^* \text{optimal} $}$\\
+						
+			$ \Rightarrow\quad $\cfbox{red}{$ \maxx{\inalp}\minn{\inx} \lagra{x}{\alpha} = \lagra{\hat{x}}{\hat{\alpha}} = f(\hat{x}) $}\\
+			
+			
+			\begin{equation*}
+				\textcolor{blue}{\begin{array}{ll}
+					\Rightarrow & \lagra{x^*}{\hat{\alpha}} \leq \lagra{x^*}{\alpha^*}\\
+					\Rightarrow & \minn{\inx} \lagra{x}{\hat{\alpha}} \leq \lagra{x^*}{\hat{\alpha}} \le q\lagra{x^*}{\alpha^*} = \maxx{\inalp}\minn{\inx}\lagra{x}{\alpha}
+					\end{array}}
+			\end{equation*}
+			
+		\subsection*{Duales Optimierungsproblem:}
+			
+			\begin{center}
+				\cfbox{red}{%
+					$\begin{array}{lll}
+					\multicolumn{3}{l}{\maxx{\inalp} \minn{\inx} \lagra{x}{\alpha}}\\
+					\text{S.T. } & \alpha &\geq 0
+					\end{array}$} \textcolor{red}{Komponentenweise Ungleichung}
+			\end{center}
+			
+			Da $ f $ und $ \vi{g}{i} $ differenzierbar und konvex sind:\\
+			
+			%TODO hier noch andere Deltas einfügen
+			\[ \lagra{x^*}{\alpha} = \minn{\inx} \lagra{x}{\alpha} \underset{\textcolor{red}{\substack{\Rightarrow \text{Notwendige Bedingung für Op}timum \\ \Leftarrow\text{Konvexität}}}}{\Leftrightarrow }\frac{\delta \lagra{x^*}{\alpha}}{\delta x} = 0\]\\
+			
+			
+			Unter den Voraussetzungen, Umformulierung des dualen Problems\\
+			
+			
+			\begin{minipage}[]{0.45\linewidth}
+				\begin{center}
+					\cfbox{red}{%
+						$\begin{array}{lll}
+							\multicolumn{3}{l}{\maxx{\inalp} \lagra{x}{\alpha}}\\
+							\text{S.T. } & \frac{\delta \lagra{x}{\alpha}}{\delta x} &= 0\\&\\
+							& \alpha &\geq 0
+						\end{array}$}
+				\end{center}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[]{0.45\linewidth}
+				\textcolor{red}{Duales Problem Für konvexe, differenzierbare Zielfunktion und Nebenbedinung}
+			\end{minipage}
+			
+			
+		\paragraph*{Duale Support Vektor Maschine:}
+			
+			Lagrange-Funktion der SVM:
+			\begin{center}
+				\cfbox{red}{%
+					$\lagra{w,b}{\alpha} = \frac{1}{2} ||w||^2 - \sum_{i=0}^{m} \vi{\alpha}{i}(\vi{y}{i} (w^T\vi{x}{i} + b)-1)$}
+			\end{center}
+			
+			Bedingung$ \frac{\delta\lagra{x}{\alpha}}{\delta x} $ für SVM:\\
+			%TODO andere Deltas
+			\begin{enumerate}[1.]
+				\item $ \frac{\delta L}{\delta w} = w - \sum_{i=1}^{m}\vi{\alpha}{i}\vi{y}{i}\vi{x}{i} \overset{!}{=} 0 \Leftrightarrow \cfbox{red}{$ w = \sum_{i=1}^{m}\vi{\alpha}{i}\vi{y}{i}\vi{x}{i} $}$
+				\item $\frac{\delta L}{\delta b} = - \sum_{i=1}^{m} \vi{\alpha}{i}\vi{y}{i} \overset{!}{=} 0 \Leftrightarrow \cfbox{red}{$ \sum_{i=1}^{m}\vi{\alpha}{i}\vi{y}{i} = 0 $}$
+			\end{enumerate}
+			
+			Einsetzen der Bedingungen in die Lagrange-Funktion
+			
+			%TODO warum ist hier die letzte Zeile kleiner als die anderen?
+			\begin{equation*}
+				\begin{array}{rl}
+				\lagra{w,b}{\alpha} = & \underset{\frac{1}{2} ||w||^2}{\underbrace{\frac{1}{2} \su{i,j} \vi{\alpha}{i} \vi{\alpha}{j} \vi{y}{i} \vi{y}{j} \vi{x}{i} \vi{x}{j}}}\\
+				& \underset{-\su{i} \vi{\alpha}{i} (\vi{y}{i}(w^T \vi{x}{i} + b)-1)}{\underbrace{- \su{i,j} \vi{\alpha}{i} \vi{y}{i} \vi{\alpha}{j} \vi{y}{j} \vi{x}{i} \vi{x}{j}
+						- b \su{i} \vi{\alpha}{i} \vi{y}{i} + \su{i} \vi{\alpha}{i}}}\\
+				&\\
+				= & \frac{1}{2} \su{i,j} \vi{\alpha}{i} \vi{\alpha}{j} \vi{y}{i} \vi{y}{j} \vi{x}{i} \vi{x}{j} + \su{i} \vi{\alpha}{i} =: \underset{\substack{\text{Elimination der} \\ \text{Variablen!}}}{\underbrace{L(\alpha)}}
+				\end{array}
+			\end{equation*}	
+			
+			$ \Rightarrow $ Duale Hard Margin SVM:
+			\begin{center}
+				\cfbox{red}{%
+					$\begin{array}{lll}
+					\multicolumn{3}{l}{\maxx{\inalp} -\frac{1}{2} \su{i,j} \vi{\alpha}{i} \vi{\alpha}{j} \vi{y}{i} \vi{y}{j} \vi{x}{i} \vi{x}{j} + \su{i} \vi{\alpha}{i}}\\
+					\text{S.T. } & \su{i} \vi{\alpha}{i} \vi{y}{i} &= 0\\&\\
+					
+					& \vi{\alpha}{i} &\geq 0
+					\end{array}$}
+			\end{center}
+		
+		
 
 \egroup
