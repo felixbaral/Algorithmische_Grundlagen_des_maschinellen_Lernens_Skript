@@ -10,8 +10,8 @@ covariate & \multicolumn{2}{l}{\{0,1\}}
 
 Modell: 
 \begin{enumerate}
-\item \[ P[y=1] = \phi\] , \[ P[y=0] = 1 - P[y=1] = 1 - \phi \]
-\item \[ P[x|y=1] = P[x_1,...,x_n | y] = \leftarrow \] \footnote{hier eine naive Annahme, dass alle $x$ von einander unabhängig sind.}  \\
+\item \[ P[y=1] = \phi\]  \[ P[y=0] = 1 - P[y=1] = 1 - \phi \]
+\item \[ P[x|y=1] = P[x_1,...,x_n | y] = \leftarrow \footnote{hier eine naive Annahme, dass alle $x$ von einander unabhängig sind.}\]   \\
 \[ = \prod_{i=1}^n P[x_i | y=1] = \prod_{i=1}^n \phi_{x_i = 1, y = 1}^{x_i} (1 - \phi_{x_i = 1, y = 1})^{1 - x_i} \] \\
 Analog: \[ P[x|y=0] = \prod_{i=1}^n P[x_i | y = 0] = \prod_{i=1}^n \phi_{x_i = 1, y = 0}^{x_i} (1 - \phi_{x_i = 1, y = 0})^{1 - x_i}\]
 \end{enumerate}

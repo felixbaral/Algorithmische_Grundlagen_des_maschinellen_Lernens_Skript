@@ -82,7 +82,7 @@ $\Rightarrow x$ frei wählbar, Messung von $y$ an der Stelle $x$ ist Zufallsexpe
 
 3,4 sind generative Modelle, d.h. sowohl $x$ als auch $y$ sind zufällig
 \item Likelihood-Funktion der Gauss'schen Diskriminanzanalyse
-\[L(\phi,\mu_0, \mu_1, \Sigma) = \prod^m_{i=1} p(x^{(i)},y^{(i)};\phi,\mu_0, \mu_1, \Sigma\]
+\[L(\phi,\mu_0, \mu_1, \Sigma) = \prod^m_{i=1} p(x^{(i)},y^{(i)};\phi,\mu_0, \mu_1, \Sigma)\]
 \[\phi \in [0,1], \quad\quad \mu_0, \mu_1 \in \mathbb{R}^n, \quad\quad \Sigma \in \mathbb{R}^{n \times n} \text{positiv definit}\]
 \[\text{Datenpunkte: } (x^{(1)},y^{(1)}, \dots , x^{(m)},y^{(m)})\]
 
@@ -116,7 +116,7 @@ Unterscheidung:
 
 Notationeller Trick:
 \[a^{y^{(i)}} = a^{\tilde{x}_{\{y^{(i)} = 1\}}}\]
-\[\tilde{x}_{\{y^{(i)} = 1\}} = =\begin{cases}1&1, \text{falls } y^{(i)} = 1\\2&0, \text{falls } y^{(i)} = 0\end{cases}\]
+\[\tilde{x}_{\{y^{(i)} = 1\}} := \begin{cases}1, \text{falls } y^{(i)} = 1\\0, \text{falls } y^{(i)} = 0\end{cases}\]
 
 \[= \left( \frac{1}{(2\pi)^{\frac{a}{2}}} |\Sigma|^{\frac{1}{2}}\right)^m \prod^m_{i=1} \exp (- \frac{1}{2} (x^{(i)} - \mu_1)^T \Sigma^{-1} (x^{(i)} - \mu_1))^{\tilde{x}_{\{y^{(i)} = 1\}}} * \]
 \[\exp (- \frac{1}{2} (x^{(i)} - \mu_0) \Sigma^{-1} (x^{(i)} - \mu_0 ))^{\tilde{x}_{\{y^{(i)} = 0\}}} * \dots *\]
@@ -124,7 +124,7 @@ Notationeller Trick:
 \end{enumerate}
 
 Merkregel: Die Likelihood-Funktion ist die Wahrscheinlichkeit der Beobachtungen als Funktion der Parameter.\\
-Da es einfach ist, mit Summen als mit Produkten zu arbeiten: Übergang zur $\log$-Likelihood-Funktion
+Da es einfacher ist, mit Summen als mit Produkten zu arbeiten: Übergang zur $\log$-Likelihood-Funktion
 \[ l (\phi, \mu_0, \mu_1, \Sigma) = \log L(\phi, \mu_0, \mu_1, \Sigma)\]
 \[= -m \log ((2\pi)^{\frac{n}{2}} |\Sigma|^{\frac{1}{2}})\]
 \[- \Sigma^n_{i=1} \tilde{x}_{\{y^{(i)} = 1\}} (x^{(i)} - \mu_1)^T \Sigma^{-1} (x^{(i)}-\mu_0)\]
@@ -143,8 +143,7 @@ Max. Likelihood-Schätzung für $\phi$
 
 Maximierung der Likelihood-Schätzung von $\mu_1$. Beachte: $\mu_1 \in \mathbb{R}^n$. Notwendig für Maximum der $\log$-Likelihood-Funktion ist das Verschwinden des Gradienten nach $\mu_1$.
 \[\bigtriangledown_{\mu_1} l(\phi, \mu_0, \mu_1, \Sigma) = \bigtriangledown_{\mu_0} (- \frac{1}{2} \Sigma^m_{i=1} \tilde{x}_{\{y^{(i)} = 1\}} (x^{(i)}-\mu_1)^T \Sigma^{-1} (x^{(i)} - \mu_1))\]
-\[= - \frac{1}{2} \Sigma^m_{i=1} \tilde{x}_{\{y^{(i)} = 1\}} \bigtriangledown_{\mu_1}\]
-\[(\underbrace{(x^{(i)} - \mu_1)^T \Sigma^{-1} (x^{(i)} - \mu_1)}_{\substack{= x^{(i)} \Sigma^{-1} x^{(i)} -2\mu_1^T \Sigma^{-1} x^{(i)} + \mu_1^T \Sigma^{-1}}})\]
+\[= - \frac{1}{2} \Sigma^m_{i=1} \tilde{x}_{\{y^{(i)} = 1\}} \bigtriangledown_{\mu_1}(\underbrace{(x^{(i)} - \mu_1)^T \Sigma^{-1} (x^{(i)} - \mu_1)}_{\substack{= x^{(i)} \Sigma^{-1} x^{(i)} -2\mu_1^T \Sigma^{-1} x^{(i)} + \mu_1^T \Sigma^{-1}}})\]
 \[= - \frac{1}{2} \Sigma^m_{i=1} \tilde{x}_{\{y^{(i)} = 1\}} (-2 \Sigma^{-1} x^{(i)} + 2 \Sigma^{-1} \mu_1)\]
 \[\Sigma^m_{i=1} \tilde{x}_{\{y^{(i)} = 1\}} \Sigma^{-1} \mu_1 - \Sigma^{-1} x^{(i)}\]
 \[\Sigma^m_{i=1} \tilde{x}_{\{x^{(i)} = 1\}} \Sigma^{-1} (\mu_1 - x^{(i)})\]
@@ -175,7 +174,7 @@ Maximierung der Likelihood-Schätzung von $\mu_1$
 \end{framed}
 Analog (Symmetrie):
 \begin{framed}
-\[\Rightarrow \mu_1 = \frac{\Sigma^m_{i=1}\tilde{x}_{\{y^{(i)}=0\}} x^{(i)}}{\Sigma^m_{i=1}\tilde{x}_{\{y^{(i)}=0\}}}\]
+\[\Rightarrow \mu_0 = \frac{\Sigma^m_{i=1}\tilde{x}_{\{y^{(i)}=0\}} x^{(i)}}{\Sigma^m_{i=1}\tilde{x}_{\{y^{(i)}=0\}}}\]
 \begin{center}
 Maximierung der Likelihood-Schätzung von $\mu_0$
 \end{center}

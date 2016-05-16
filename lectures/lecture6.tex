@@ -4,7 +4,7 @@
 			Maximum Likelihood-Schätzung der Parameter $\phi, \mu _0 \mu _1$
 			
 			\textcolor{red}{Eigentlich $\Sigma$ schätzen, das ist etwas aufwändiger}
-			\textcolor{red}{\[ \Sigma _{ML} = \sum_{i=1}^{m} \chi_{\{y^{(i)} = 1\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T + \sum_{i=1}^{m} \chi_{\{y^{(i)} = 0\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T \quad   \footnote{$(x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T$ ist Rang 1 Matrix}\]}
+			\textcolor{red}{\[ \Sigma _{ML} = \sum_{i=1}^{m} \chi_{\{y^{(i)} = 1\}} (x^{(i)} - \mu_1) (x^{(i)} - \mu_1)^T + \sum_{i=1}^{m} \chi_{\{y^{(i)} = 0\}} (x^{(i)} - \mu_0) (x^{(i)} - \mu_0)^T \quad   \footnote{$(x^{(i)} - \mu_0) (x^{(i)} - \mu_1)^T$ ist Rang 1 Matrix}\]}
 			
 		\subsubsection*{Wichtig:}
 			$\Sigma$ ist gleich für die beiden Klassen $y = 1$ bzw. $y = 0$.
@@ -86,7 +86,7 @@
 			%TODO Plot muss erstellt werden
 			\begin{figure}
 				\centering
-				\includegraphics[width=0.7\linewidth]{graphs/dummy}
+				\includegraphics[width=0.3\linewidth]{graphs/dummy}
 %				\includegraphics[width=0.7\linewidth]{graphs/plot6_1}
 				\caption{Entscheidungsgrenze wird durch einen Eindimensionalen Unterraum othogonal zu $ \Theta $}
 			\end{figure}
@@ -96,7 +96,7 @@
 			%TODO Plot muss erstellt werden
 			\begin{figure}
 				\centering
-				\includegraphics[width=0.7\linewidth]{graphs/dummy}
+				\includegraphics[width=0.3\linewidth]{graphs/dummy}
 %				\includegraphics[width=0.7\linewidth]{graphs/plot6_2}
 				\caption{a : Abstand des Unterraums zum Ursprung}
 			\end{figure}
